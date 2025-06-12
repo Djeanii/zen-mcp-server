@@ -11,6 +11,7 @@ class ProviderType(Enum):
 
     GOOGLE = "google"
     OPENAI = "openai"
+    OPENROUTER = "openrouter"
 
 
 class TemperatureConstraint(ABC):
@@ -101,19 +102,23 @@ class DiscreteTemperatureConstraint(TemperatureConstraint):
 class ModelCapabilities:
     """Capabilities and constraints for a specific model."""
 
-    provider: ProviderType
-    model_name: str
-    friendly_name: str  # Human-friendly name like "Gemini" or "OpenAI"
-    max_tokens: int
-    supports_extended_thinking: bool = False
+    context_window: int
+    supports_thinking_mode: bool = False
+    supports_files: bool = True
+    supports_functions: bool = False
+    provider: Optional[ProviderType] = None
+    
+    # Legacy fields for compatibility
+    temperature_constraint: Optional[TemperatureConstraint] = field(
+        default_factory=lambda: RangeTemperatureConstraint(0.0, 2.0, 0.7)
+    )
+    model_name: Optional[str] = None
+    friendly_name: Optional[str] = None
+    max_tokens: Optional[int] = None
+    supports_extended_thinking: Optional[bool] = None
     supports_system_prompts: bool = True
     supports_streaming: bool = True
     supports_function_calling: bool = False
-
-    # Temperature constraint object - preferred way to define temperature limits
-    temperature_constraint: TemperatureConstraint = field(
-        default_factory=lambda: RangeTemperatureConstraint(0.0, 2.0, 0.7)
-    )
 
     # Backward compatibility property for existing code
     @property
@@ -134,11 +139,15 @@ class ModelResponse:
     """Response from a model provider."""
 
     content: str
-    usage: dict[str, int] = field(default_factory=dict)  # input_tokens, output_tokens, total_tokens
+    thinking_content: Optional[str] = None  # For models with open reasoning
+    model_info: dict[str, Any] = field(default_factory=dict)  # All model metadata
+    
+    # Legacy fields for compatibility
+    usage: dict[str, int] = field(default_factory=dict)
     model_name: str = ""
-    friendly_name: str = ""  # Human-friendly name like "Gemini" or "OpenAI"
-    provider: ProviderType = ProviderType.GOOGLE
-    metadata: dict[str, Any] = field(default_factory=dict)  # Provider-specific metadata
+    friendly_name: str = ""
+    provider: Optional[ProviderType] = None
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     @property
     def total_tokens(self) -> int:

@@ -117,6 +117,7 @@ class ModelProviderRegistry:
         key_mapping = {
             ProviderType.GOOGLE: "GEMINI_API_KEY",
             ProviderType.OPENAI: "OPENAI_API_KEY",
+            ProviderType.OPENROUTER: "OPENROUTER_API_KEY",
         }
 
         env_var = key_mapping.get(provider_type)
@@ -133,28 +134,29 @@ class ModelProviderRegistry:
         a sensible default model for auto mode fallback situations.
 
         Priority order:
-        1. OpenAI o3-mini (balanced performance/cost) if OpenAI API key available
-        2. Gemini 2.0 Flash (fast and efficient) if Gemini API key available
-        3. OpenAI o3 (high performance) if OpenAI API key available
-        4. Gemini 2.5 Pro (deep reasoning) if Gemini API key available
-        5. Fallback to gemini-2.5-flash-preview-05-20 (most common case)
+        1. OpenRouter free models if OPENROUTER_API_KEY available
+        2. OpenAI o3-mini (balanced performance/cost) if OpenAI API key available
+        3. Gemini 2.0 Flash (fast and efficient) if Gemini API key available
+        4. Fallback to best free model
 
         Returns:
             Model name string for fallback use
         """
         # Check provider availability by trying to get instances
+        openrouter_available = cls.get_provider(ProviderType.OPENROUTER) is not None
         openai_available = cls.get_provider(ProviderType.OPENAI) is not None
         gemini_available = cls.get_provider(ProviderType.GOOGLE) is not None
 
-        # Priority order: prefer balanced models first, then high-performance
-        if openai_available:
+        # Priority order: prefer free models first
+        if openrouter_available:
+            return "qwen/qwen-2.5-coder-32b-instruct:free"  # Best free model
+        elif openai_available:
             return "o3-mini"  # Balanced performance/cost
         elif gemini_available:
             return "gemini-2.5-flash-preview-05-20"  # Fast and efficient
         else:
-            # No API keys available - return a reasonable default
-            # This maintains backward compatibility for tests
-            return "gemini-2.5-flash-preview-05-20"
+            # No API keys available - return best free model
+            return "qwen/qwen-2.5-coder-32b-instruct:free"
 
     @classmethod
     def get_available_providers_with_keys(cls) -> list[ProviderType]:

@@ -1,15 +1,19 @@
-# Zen MCP: One Context. Many Minds.
+# 🆓 Zen MCP Fork: 100% FREE AI Models!
 
 https://github.com/user-attachments/assets/8097e18e-b926-4d8b-ba14-a979e4c58bda
 
 <div align="center">  
-  <b>🤖 Claude + [Gemini / O3 / or Both] = Your Ultimate AI Development Team</b>
+  <b>🤖 One Context. Many Minds. Zero Cost. 🆓</b>
+  <br/>
+  <i>✨ Access 15+ powerful AI models - No credit card required! ✨</i>
+  <br/><br/>
+  <b>📖 New to this? Start with the <a href="README_SIMPLE.md">Simple Guide</a> for 2-minute setup!</b>
 </div>
 
 <br/>
 
-The ultimate development partners for Claude - a Model Context Protocol server that gives Claude access to multiple AI models for enhanced code analysis, 
-problem-solving, and collaborative development.
+A secure, production-ready Model Context Protocol (MCP) server that provides access to **100% FREE** AI models through OpenRouter. 
+Get the power of **DeepSeek R1 (671B)**, **Qwen 2.5 Coder**, **Llama 3.3**, **Mistral Devstral**, and more - all completely FREE!
 
 **Features true AI orchestration with conversations that continue across tasks** - Give Claude a complex
 task and let it orchestrate between models automatically. Claude stays in control, performs the actual work, 
@@ -18,13 +22,13 @@ with context carrying forward seamlessly.
 
 **Example Workflow - Claude Code:**
 1. Performs its own reasoning
-2. Uses Gemini Pro to deeply [`analyze`](#6-analyze---smart-file-analysis) the code in question for a second opinion
-3. Switches to O3 to continue [`chatting`](#1-chat---general-development-chat--collaborative-thinking) about its findings 
-4. Uses Flash to evaluate formatting suggestions from O3
+2. Uses Qwen 2.5 Coder to deeply [`analyze`](#6-analyze---smart-file-analysis) the code in question for a second opinion
+3. Switches to DeepSeek R1 to continue [`chatting`](#1-chat---general-development-chat--collaborative-thinking) about its findings 
+4. Uses Gemini Flash FREE to evaluate formatting suggestions from DeepSeek
 5. Performs the actual work after taking in feedback from all three
-6. Returns to Pro for a [`precommit`](#4-precommit---pre-commit-validation) review
+6. Returns to Mistral Devstral for a [`precommit`](#4-precommit---pre-commit-validation) review
 
-All within a single conversation thread! Gemini Pro in step 6 _knows_ what was recommended by O3 in step 3! Taking that context
+All within a single conversation thread! Mistral Devstral in step 6 _knows_ what was recommended by DeepSeek R1 in step 3! Taking that context
 and review into consideration to aid with its pre-commit review.
 
 **Think of it as Claude Code _for_ Claude Code.** This MCP isn't magic. It's just **super-glue**.
@@ -51,6 +55,7 @@ and review into consideration to aid with its pre-commit review.
   - [Web Search Integration](#web-search-integration) - Smart search recommendations
   - [Collaborative Workflows](#collaborative-workflows) - Multi-tool patterns
   - [Tool Parameters](#tool-parameters) - Detailed parameter reference
+  - [Docker Architecture](#docker-architecture) - How Docker integration works
 
 - **Resources**
   - [Windows Setup](#windows-setup-guide) - WSL setup instructions for Windows
@@ -61,17 +66,20 @@ and review into consideration to aid with its pre-commit review.
 
 Claude is brilliant, but sometimes you need:
 - **Multiple AI perspectives** - Let Claude orchestrate between different models to get the best analysis
+- **Cost-effective AI access** - Use FREE tier models via OpenRouter for most tasks (default: google/gemini-2.0-flash-exp:free)
+- **Access to 20+ models** - OpenRouter integration provides Claude, GPT-4, Llama, Mistral, DeepSeek, and more through a single API
 - **Automatic model selection** - Claude picks the right model for each task (or you can specify)
 - **A senior developer partner** to validate and extend ideas ([`chat`](#1-chat---general-development-chat--collaborative-thinking))
-- **A second opinion** on complex architectural decisions - augment Claude's thinking with perspectives from Gemini Pro, O3, or others ([`thinkdeep`](#2-thinkdeep---extended-reasoning-partner))
+- **A second opinion** on complex architectural decisions - augment Claude's thinking with perspectives from DeepSeek R1, Qwen, or others ([`thinkdeep`](#2-thinkdeep---extended-reasoning-partner))
 - **Professional code reviews** with actionable feedback across entire repositories ([`codereview`](#3-codereview---professional-code-review))
 - **Pre-commit validation** with deep analysis using the best model for the job ([`precommit`](#4-precommit---pre-commit-validation))
-- **Expert debugging** - O3 for logical issues, Gemini for architectural problems ([`debug`](#5-debug---expert-debugging-assistant))
-- **Extended context windows beyond Claude's limits** - Delegate analysis to Gemini (1M tokens) or O3 (200K tokens) for entire codebases, large datasets, or comprehensive documentation
-- **Model-specific strengths** - Extended thinking with Gemini Pro, fast iteration with Flash, strong reasoning with O3
+- **Expert debugging** - Qwen for logical issues, DeepSeek for architectural problems ([`debug`](#5-debug---expert-debugging-assistant))
+- **Extended context windows beyond Claude's limits** - Delegate analysis to Gemini Flash (1M tokens) or DeepSeek R1 (163K tokens) for entire codebases, large datasets, or comprehensive documentation
+- **Model-specific strengths** - Extended thinking with DeepSeek R1, fast iteration with Gemini Flash, strong reasoning with Qwen
 - **Dynamic collaboration** - Models can request additional context and follow-up replies from Claude mid-analysis
 - **Smart file handling** - Automatically expands directories, manages token limits based on model capacity
 - **[Bypass MCP's token limits](#working-with-large-prompts)** - Work around MCP's 25K limit automatically
+- **Built-in rate limiting & retry logic** - Handles API limits gracefully with exponential backoff
 
 This server orchestrates multiple AI models as your development team, with Claude automatically selecting the best model for each task or allowing you to choose specific models for different strengths.
 
@@ -87,7 +95,44 @@ first adding a unit test with `measure` and measuring current code and then impl
 measuring again to ensure it improved, then share results. Check with gemini in between as you make tweaks.
 ```
 
-The final implementation resulted in a 26% improvement in JSON parsing performance for the selected library, reducing processing time through targeted, collaborative optimizations guided by Gemini’s analysis and Claude’s refinement.
+The final implementation resulted in a 26% improvement in JSON parsing performance for the selected library, reducing processing time through targeted, collaborative optimizations guided by the AI models' analysis and Claude's refinement.
+
+## 🆓 100% FREE Models - No Hidden Costs!
+
+This fork provides access to **15+ POWERFUL FREE MODELS** via OpenRouter:
+
+### ⭐ Top Free Models:
+| Model | Params/Features | Best For |
+|-------|----------------|----------|
+| **DeepSeek R1** | 671B params, 163K context | Complex reasoning & architecture |
+| **Qwen 2.5 Coder** | 32B, 128K context | General chat + code |
+| **Mistral Devstral** | SWE-Bench 46.8% | Code review & generation |
+| **Gemini Flash** | 1M context window! | Large codebases, fast analysis |
+| **Llama 3.3 70B** | 70B, 128K context | High-quality conversations |
+
+✅ **No credit card required**  
+✅ **No paid tiers needed**  
+✅ **Full functionality with free models**  
+
+See [FREE_MODELS_GUIDE.md](docs/FREE_MODELS_GUIDE.md) for the complete list.
+
+## 🚀 What's New in This Fork
+
+### ✨ 100% Free Model Focus (June 2025)
+- **ALL paid models removed** - Clean, simple, free-only codebase
+- **15+ carefully tested FREE models** - Best of OpenRouter's free tier
+- **Enhanced security** - Authentication, rate limiting, Redis protection
+- **Production ready** - Persistent server mode with REST API
+- **CLI tool included** - Direct command-line access to all tools
+- **Smart defaults** - Auto-selects best free model for each task
+
+### 🔒 Security Enhancements
+- ✅ Bearer token authentication
+- ✅ Rate limiting per session  
+- ✅ Redis password protection
+- ✅ Input validation with Pydantic
+- ✅ Secure session management
+- ✅ Environment variable protection
 
 ## Quickstart (5 minutes)
 
@@ -97,40 +142,53 @@ The final implementation resulted in a 26% improvement in JSON parsing performan
 - Git
 - **Windows users**: WSL2 is required for Claude Code CLI
 
-### 1. Get API Keys (at least one required)
-- **Gemini**: Visit [Google AI Studio](https://makersuite.google.com/app/apikey) and generate an API key. For best results with Gemini 2.5 Pro, use a paid API key as the free tier has limited access to the latest models.
-- **OpenAI**: Visit [OpenAI Platform](https://platform.openai.com/api-keys) to get an API key for O3 model access.
-
-### 2. Clone and Set Up
-
+### 1. Get Your FREE OpenRouter API Key
 ```bash
-# Clone to your preferred location
-git clone https://github.com/BeehiveInnovations/zen-mcp-server.git
-cd zen-mcp-server
-
-# One-command setup (includes Redis for AI conversations)
-./setup-docker.sh
+# Visit OpenRouter (no credit card needed!)
+# https://openrouter.ai/keys
 ```
 
-**What this does:**
-- **Builds Docker images** with all dependencies (including Redis for conversation threading)
-- **Creates .env file** (automatically uses `$GEMINI_API_KEY` and `$OPENAI_API_KEY` if set in environment)
-- **Starts Redis service** for AI-to-AI conversation memory
-- **Starts MCP server** with providers based on available API keys
-- **Adds Zen to Claude Code automatically**
+✅ **100% FREE** - No payment info required  
+✅ **Instant access** to 15+ powerful models  
+✅ **Simple setup** - Just one API key needed
 
-### 3. Add Your API Keys
+### 2. Quick Setup
 
 ```bash
-# Edit .env to add your API keys (if not already set in environment)
-nano .env
+# Clone the fork
+git clone https://github.com/[your-username]/zen-mcp-fork.git
+cd zen-mcp-fork
 
-# The file will contain:
-# GEMINI_API_KEY=your-gemini-api-key-here  # For Gemini models
-# OPENAI_API_KEY=your-openai-api-key-here  # For O3 model
-# WORKSPACE_ROOT=/Users/your-username  (automatically configured)
+# Add your FREE key and start
+export OPENROUTER_API_KEY=sk-or-v1-your-key-here
+./quickstart.sh
 
-# Note: At least one API key is required (Gemini or OpenAI)
+# That's it! 🎉
+```
+
+For advanced setup with REST API:
+```bash
+./quickstart.sh --advanced
+```
+
+> **💡 Configuration Note**: 
+> - Use `.env.simple` for quick setup (just the API key)
+> - Use `.env.example` for full configuration reference
+
+### 3. Use Simple Model Names!
+
+With Claude Code:
+```
+"chat about Python"          → Uses Qwen 2.5 Coder
+"think about architecture"   → Uses DeepSeek R1 (671B!)
+"code review my function"    → Uses Mistral Devstral
+"fast check this error"      → Uses Gemini Flash (1M context!)
+```
+
+Or with CLI (if using --advanced):
+```bash
+./zen-cli.sh chat "Hello!"     # Uses best free chat model
+./zen-cli.sh think "Design ideas"  # Uses DeepSeek R1
 ```
 
 ### 4. Configure Claude
@@ -205,16 +263,16 @@ Completely quit and restart Claude Desktop for the changes to take effect.
 
 Just ask Claude naturally:
 - "Think deeper about this architecture design with zen" → Claude picks best model + `thinkdeep`
-- "Using zen perform a code review of this code for security issues" → Claude might pick Gemini Pro + `codereview`
-- "Use zen and debug why this test is failing, the bug might be in my_class.swift" → Claude might pick O3 + `debug`
+- "Using zen perform a code review of this code for security issues" → Claude might pick Qwen 2.5 Coder + `codereview`
+- "Use zen and debug why this test is failing, the bug might be in my_class.swift" → Claude might pick DeepSeek R1 + `debug`
 - "With zen, analyze these files to understand the data flow" → Claude picks appropriate model + `analyze`
-- "Use flash to suggest how to format this code based on the specs mentioned in policy.md" → Uses Gemini Flash specifically
-- "Think deeply about this and get o3 to debug this logic error I found in the checkOrders() function" → Uses O3 specifically
-- "Brainstorm scaling strategies with pro. Study the code, pick your preferred strategy and debate with pro to settle on two best approaches" → Uses Gemini Pro specifically
+- "Use fast to suggest how to format this code based on the specs mentioned in policy.md" → Uses Gemini Flash specifically
+- "Think deeply about this and get think to debug this logic error I found in the checkOrders() function" → Uses DeepSeek R1 specifically
+- "Brainstorm scaling strategies with smart. Study the code, pick your preferred strategy and debate with smart to settle on two best approaches" → Uses Llama 3.3 specifically
 
 > **Remember:** Claude remains in control — but **you** are the true orchestrator.  
 > You're the prompter, the guide, the puppeteer.  
-> Your prompt decides when Claude brings in Gemini, Flash, O3 — or handles it solo.
+> Your prompt decides when Claude brings in another model — or handles it solo.
 
 ## Available Tools
 
@@ -227,15 +285,15 @@ Just ask Claude naturally:
 - **Want to understand code?** → `analyze` (architecture, patterns, dependencies)
 - **Server info?** → `get_version` (version and configuration details)
 
-**Auto Mode:** When `DEFAULT_MODEL=auto`, Claude automatically picks the best model for each task. You can override with: "Use flash for quick analysis" or "Use o3 to debug this".
+**Auto Mode:** When `DEFAULT_MODEL=auto`, Claude automatically picks the best model for each task. You can override with: "Use fast for quick analysis" or "Use think to debug this".
 
 **Model Selection Examples:**
-- Complex architecture review → Claude picks Gemini Pro
-- Quick formatting check → Claude picks Flash
-- Logical debugging → Claude picks O3
-- General explanations → Claude picks Flash for speed
+- Complex architecture review → Claude picks DeepSeek R1
+- Quick formatting check → Claude picks Gemini Flash
+- Logical debugging → Claude picks Qwen QwQ
+- General explanations → Claude picks Qwen 2.5 Coder for balance
 
-**Pro Tip:** Thinking modes (for Gemini models) control depth vs token cost. Use "minimal" or "low" for quick tasks, "high" or "max" for complex problems. [Learn more](#thinking-modes---managing-token-costs--quality)
+**Pro Tip:** Thinking modes (for DeepSeek models) control depth vs token cost. Use "minimal" or "low" for quick tasks, "high" or "max" for complex problems. [Learn more](#thinking-modes---managing-token-costs--quality)
 
 **Tools Overview:**
 1. [`chat`](#1-chat---general-development-chat--collaborative-thinking) - Collaborative thinking and development conversations
@@ -245,6 +303,71 @@ Just ask Claude naturally:
 5. [`debug`](#5-debug---expert-debugging-assistant) - Root cause analysis and debugging
 6. [`analyze`](#6-analyze---smart-file-analysis) - General-purpose file and code analysis
 7. [`get_version`](#7-get_version---server-information) - Get server version and configuration
+
+## 🚀 NEW: Persistent Server Mode
+
+Run zen-mcp as a standalone REST API server for direct access without Claude! Perfect for:
+- Integration with other tools and IDEs
+- CI/CD pipelines
+- Batch processing
+- Custom applications
+
+### Quick Start with Persistent Server
+
+```bash
+# Start the persistent server
+./zen-cli.sh start
+
+# Use the CLI tool
+./zen-cli.sh chat "What's the best way to implement caching?"
+./zen-cli.sh review /path/to/file.py
+./zen-cli.sh debug "TypeError: cannot read property 'id' of undefined"
+
+# Or use the REST API directly
+curl -X POST http://localhost:8765/tools/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "arguments": {
+      "prompt": "Explain async/await in Python",
+      "model": "qwen/qwen-2.5-coder-32b-instruct"
+    }
+  }'
+```
+
+## 📁 Project Organization
+
+```
+zen-mcp-fork/
+├── README.md              # You are here!
+├── README_SIMPLE.md       # 2-minute quick start
+├── docs/                  # All documentation
+├── scripts/               # Setup and utility scripts
+├── examples/              # Configuration examples
+├── tests/                 # All tests (unit + integration)
+├── tools/                 # MCP tool implementations
+└── bin/                   # Utility programs
+```
+
+### 📚 Documentation
+
+**New Users:**
+- **[README_SIMPLE.md](README_SIMPLE.md)** - 2-minute setup guide
+- **[docs/FREE_MODELS_GUIDE.md](docs/FREE_MODELS_GUIDE.md)** - Simple model names & usage
+
+**Advanced Setup:**
+- **[docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** - Detailed installation and configuration  
+- **[docs/API_KEYS.md](docs/API_KEYS.md)** - API key configuration options
+- **[docs/PERSISTENT_SERVER.md](docs/PERSISTENT_SERVER.md)** - REST API and CLI documentation
+
+**Help:**
+- **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** - Common issues and quick fixes
+
+Key features of persistent mode:
+- REST API endpoints for all tools
+- Session management for conversations
+- CLI tool for easy command-line access
+- Docker compose for production deployment
+- Support for all OpenRouter models including FREE tier
 
 ### 1. `chat` - General Development Chat & Collaborative Thinking
 **Your thinking partner - bounce ideas, get second opinions, brainstorm collaboratively**
@@ -267,8 +390,8 @@ and then debate with the other models to give me a final verdict
 - General development questions and explanations
 - Technology comparisons and best practices
 - Architecture and design discussions
-- Can reference files for context: `"Use gemini to explain this algorithm with context from algorithm.py"`
-- **Dynamic collaboration**: Gemini can request additional files or context during the conversation if needed for a more thorough response
+- Can reference files for context: `"Use zen to explain this algorithm with context from algorithm.py"`
+- **Dynamic collaboration**: Models can request additional files or context during the conversation if needed for a more thorough response
 - **Web search capability**: Analyzes when web searches would be helpful and recommends specific searches for Claude to perform, ensuring access to current documentation and best practices
 
 ### 2. `thinkdeep` - Extended Reasoning Partner
@@ -280,18 +403,18 @@ and then debate with the other models to give me a final verdict
 #### Example Prompt:
 
 ```
-Think deeper about my authentication design with pro using max thinking mode and brainstorm to come up 
+Think deeper about my authentication design with think using max thinking mode and brainstorm to come up 
 with the best architecture for my project
 ```
 
 **Key Features:**
-- **Uses Gemini's specialized thinking models** for enhanced reasoning capabilities
+- **Uses DeepSeek R1's reasoning capabilities** for enhanced analysis
 - Provides a second opinion on Claude's analysis
 - Challenges assumptions and identifies edge cases Claude might miss
 - Offers alternative perspectives and approaches
 - Validates architectural decisions and design patterns
-- Can reference specific files for context: `"Use gemini to think deeper about my API design with reference to api/routes.py"`
-- **Enhanced Critical Evaluation (v2.10.0)**: After Gemini's analysis, Claude is prompted to critically evaluate the suggestions, consider context and constraints, identify risks, and synthesize a final recommendation - ensuring a balanced, well-considered solution
+- Can reference specific files for context: `"Use zen to think deeper about my API design with reference to api/routes.py"`
+- **Enhanced Critical Evaluation**: After model's analysis, Claude is prompted to critically evaluate the suggestions, consider context and constraints, identify risks, and synthesize a final recommendation - ensuring a balanced, well-considered solution
 - **Web search capability**: When enabled (default: true), identifies areas where current documentation or community solutions would strengthen the analysis and suggests specific searches for Claude
 
 ### 3. `codereview` - Professional Code Review  
@@ -302,15 +425,15 @@ with the best architecture for my project
 #### Example Prompts:
 
 ```
-Perform a codereview with gemini pro and review auth.py for security issues and potential vulnerabilities.
+Perform a codereview with zen and review auth.py for security issues and potential vulnerabilities.
 I need an actionable plan but break it down into smaller quick-wins that we can implement and test rapidly 
 ```
 
 **Key Features:**
 - Issues prioritized by severity (🔴 CRITICAL → 🟢 LOW)
 - Supports specialized reviews: security, performance, quick
-- Can enforce coding standards: `"Use gemini to review src/ against PEP8 standards"`
-- Filters by severity: `"Get gemini to review auth/ - only report critical vulnerabilities"`
+- Can enforce coding standards: `"Use zen to review src/ against PEP8 standards"`
+- Filters by severity: `"Get zen to review auth/ - only report critical vulnerabilities"`
 
 ### 4. `precommit` - Pre-Commit Validation
 **Comprehensive review of staged/unstaged git changes across multiple repositories**
@@ -323,7 +446,7 @@ I need an actionable plan but break it down into smaller quick-wins that we can 
 
 **Prompt Used:**
 ```
-Now use gemini and perform a review and precommit and ensure original requirements are met, no duplication of code or
+Now use zen and perform a review and precommit and ensure original requirements are met, no duplication of code or
 logic, everything should work as expected
 ```
 
@@ -360,8 +483,8 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 
 **Basic Usage:**
 ```
-"Use gemini to debug this TypeError: 'NoneType' object has no attribute 'split'"
-"Get gemini to debug why my API returns 500 errors with the full stack trace: [paste traceback]"
+"Use zen to debug this TypeError: 'NoneType' object has no attribute 'split'"
+"Get zen to debug why my API returns 500 errors with the full stack trace: [paste traceback]"
 ```
 
 **Key Features:**
@@ -381,8 +504,8 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 
 **Basic Usage:**
 ```
-"Use gemini to analyze main.py to understand how it works"
-"Get gemini to do an architecture analysis of the src/ directory"
+"Use zen to analyze main.py to understand how it works"
+"Get zen to do an architecture analysis of the src/ directory"
 ```
 
 **Key Features:**
@@ -390,10 +513,11 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 - Supports specialized analysis types: architecture, performance, security, quality
 - Uses file paths (not content) for clean terminal output
 - Can identify patterns, anti-patterns, and refactoring opportunities
-- **Web search capability**: When enabled with `use_websearch` (default: true), the model can request Claude to perform web searches and share results back to enhance analysis with current documentation, design patterns, and best practices
+- **Web search capability**: When enabled with `use_websearch`, can look up framework documentation, design patterns, and best practices relevant to the code being analyzed
 ### 7. `get_version` - Server Information
 ```
-"Get zen to show its version"
+"Use zen for its version"
+"Get zen to show server configuration"
 ```
 
 ## Tool Parameters
@@ -405,89 +529,84 @@ All tools that work with files support **both individual files and entire direct
 **`analyze`** - Analyze files or directories
 - `files`: List of file paths or directories (required)
 - `question`: What to analyze (required)  
-- `model`: auto|pro|flash|o3|o3-mini (default: server default)
+- `model`: auto|chat|think|code|fast|smart (default: server default)
 - `analysis_type`: architecture|performance|security|quality|general
 - `output_format`: summary|detailed|actionable
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, Gemini only)
-- `use_websearch`: Enable web search for documentation and best practices - allows model to request Claude perform searches (default: true)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
+- `use_websearch`: Enable web search for documentation and best practices (default: false)
 
 ```
 "Analyze the src/ directory for architectural patterns" (auto mode picks best model)
-"Use flash to quickly analyze main.py and tests/ to understand test coverage" 
-"Use o3 for logical analysis of the algorithm in backend/core.py"
-"Use pro for deep analysis of the entire backend/ directory structure"
+"Use fast to quickly analyze main.py and tests/ to understand test coverage" 
+"Use think for logical analysis of the algorithm in backend/core.py"
+"Use smart for deep analysis of the entire backend/ directory structure"
 ```
 
 **`codereview`** - Review code files or directories
 - `files`: List of file paths or directories (required)
-- `model`: auto|pro|flash|o3|o3-mini (default: server default)
+- `model`: auto|chat|think|code|fast|smart (default: server default)
 - `review_type`: full|security|performance|quick
 - `focus_on`: Specific aspects to focus on
 - `standards`: Coding standards to enforce
 - `severity_filter`: critical|high|medium|all
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, Gemini only)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
 
 ```
 "Review the entire api/ directory for security issues" (auto mode picks best model)
-"Use pro to review auth/ for deep security analysis"
-"Use o3 to review logic in algorithms/ for correctness"
-"Use flash to quickly review src/ with focus on performance, only show critical issues"
+"Use think to review auth/ for deep security analysis"
+"Use code to review logic in algorithms/ for correctness"
+"Use fast to quickly review src/ with focus on performance, only show critical issues"
 ```
 
 **`debug`** - Debug with file context
 - `error_description`: Description of the issue (required)
-- `model`: auto|pro|flash|o3|o3-mini (default: server default)
+- `model`: auto|chat|think|code|fast|smart (default: server default)
 - `error_context`: Stack trace or logs
 - `files`: Files or directories related to the issue
 - `runtime_info`: Environment details
 - `previous_attempts`: What you've tried
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, Gemini only)
-- `use_websearch`: Enable web search for error messages and solutions - allows model to request Claude perform searches (default: true)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
+- `use_websearch`: Enable web search for error messages and solutions (default: false)
 
 ```
 "Debug this logic error with context from backend/" (auto mode picks best model)
-"Use o3 to debug this algorithm correctness issue"
-"Use pro to debug this complex architecture problem"
+"Use think to debug this algorithm correctness issue"
+"Use smart to debug this complex architecture problem"
 ```
 
 **`thinkdeep`** - Extended analysis with file context
 - `current_analysis`: Your current thinking (required)
-- `model`: auto|pro|flash|o3|o3-mini (default: server default)
+- `model`: auto|chat|think|code|fast|smart (default: server default)
 - `problem_context`: Additional context
 - `focus_areas`: Specific aspects to focus on
 - `files`: Files or directories for context
-- `thinking_mode`: minimal|low|medium|high|max (default: max, Gemini only)
-- `use_websearch`: Enable web search for documentation and insights - allows model to request Claude perform searches (default: true)
+- `thinking_mode`: minimal|low|medium|high|max (default: max, DeepSeek only)
+- `use_websearch`: Enable web search for documentation and insights (default: false)
 
 ```
 "Think deeper about my design with reference to src/models/" (auto mode picks best model)
-"Use pro to think deeper about this architecture with extended thinking"
-"Use o3 to think deeper about the logical flow in this algorithm"
+"Use think to think deeper about this architecture with extended thinking"
+"Use smart to think deeper about the logical flow in this algorithm"
 ```
 
 ## Collaborative Workflows
 
 ### Design → Review → Implement
 ```
-Think hard about designing and developing a fun calculator app in swift. Review your design plans with o3, taking in
-their suggestions but keep the feature-set realistic and doable without adding bloat. Begin implementing and in between
-implementation, get a codereview done by Gemini Pro and chat with Flash if you need to for creative directions.   
+"Design a real-time collaborative editor. Use zen to think deeper about edge cases and scalability.
+Implement an improved version incorporating zen's suggestions."
 ```
 
 ### Code → Review → Fix
 ```
-Implement a new screen where the locations taken from the database display on a map, with pins falling from
-the top and landing with animation. Once done, codereview with gemini pro and o3 both and ask them to critique your
-work. Fix medium to critical bugs / concerns / issues and show me the final product
+"Implement JWT authentication. Get zen to do a security review. Fix any issues zen identifies and
+show me the secure implementation."
 ```
 
-### Debug → Analyze → Solution → Precommit Check → Publish
+### Debug → Analyze → Solution
 ```
-Take a look at these log files saved under subfolder/diagnostics.log there's a bug where the user says the app
-crashes at launch. Think hard and go over each line, tallying it with corresponding code within the project. After
-you've performed initial investigation, ask gemini pro to analyze the log files and the related code where you 
-suspect lies the bug and then formulate and implement a bare minimal fix. Must not regress. Perform a precommit
-with zen in the end using gemini pro to confirm we're okay to publish the fix 
+"Debug why our API crashes under load. Use zen to analyze deeper with context from api/handlers/. Implement a
+fix based on zen's root cause analysis."
 ```
 
 ### Tool Selection Guidance
@@ -507,11 +626,11 @@ To help choose the right tool for your needs:
 
 ## Thinking Modes - Managing Token Costs & Quality
 
-**Claude automatically manages thinking modes based on task complexity**, but you can also manually control Gemini's reasoning depth to balance between response quality and token consumption. Each thinking mode uses a different amount of tokens, directly affecting API costs and response time.
+**Claude automatically manages thinking modes based on task complexity**, but you can also manually control model reasoning depth to balance between response quality and token consumption. Each thinking mode uses a different amount of tokens, directly affecting API costs and response time.
 
 ### Thinking Modes & Token Budgets
 
-These only apply to models that support customizing token usage for extended thinking, such as Gemini 2.5 Pro.
+These only apply to models that support customizing token usage for extended thinking, such as DeepSeek R1.
 
 | Mode | Token Budget | Use Case | Cost Impact |
 |------|-------------|----------|-------------|
@@ -550,30 +669,30 @@ These only apply to models that support customizing token usage for extended thi
 
 **Examples by scenario:**
 ```
-# Quick style check with o3
-"Use flash to review formatting in utils.py"
+# Quick style check
+"Use fast to review formatting in utils.py"
 
-# Security audit with o3
-"Get o3 to do a security review of auth/ with thinking mode high"
+# Security audit
+"Get think to do a security review of auth/ with thinking mode high"
 
-# Complex debugging, letting claude pick the best model
+# Complex debugging
 "Use zen to debug this race condition with max thinking mode"
 
-# Architecture analysis with Gemini 2.5 Pro
-"Analyze the entire src/ directory architecture with high thinking using pro"
+# Architecture analysis with DeepSeek R1
+"Analyze the entire src/ directory architecture with high thinking using think"
 ```
 
 ## Advanced Features
 
 ### AI-to-AI Conversation Threading
 
-This server enables **true AI collaboration** between Claude and multiple AI models (Gemini, O3), where they can coordinate and question each other's approaches:
+This server enables **true AI collaboration** between Claude and multiple AI models, where they can coordinate and question each other's approaches:
 
 **How it works:**
-- **Gemini can ask Claude follow-up questions** to clarify requirements or gather more context
+- **Models can ask Claude follow-up questions** to clarify requirements or gather more context
 - **Claude can respond** with additional information, files, or refined instructions
 - **Claude can work independently** between exchanges - implementing solutions, gathering data, or performing analysis
-- **Claude can return to Gemini** with progress updates and new context for further collaboration
+- **Claude can return to models** with progress updates and new context for further collaboration
 - **Cross-tool continuation** - Start with one tool (e.g., `analyze`) and continue with another (e.g., `codereview`) using the same conversation thread
 - **Both AIs coordinate their approaches** - questioning assumptions, validating solutions, and building on each other's insights
 - Each conversation maintains full context while only sending incremental updates
@@ -582,25 +701,25 @@ This server enables **true AI collaboration** between Claude and multiple AI mod
 **Example of Multi-Model AI Coordination:**
 1. You: "Debate SwiftUI vs UIKit - which is better for iOS development?"
 2. Claude (auto mode): "I'll orchestrate a debate between different models for diverse perspectives."
-3. Gemini Pro: "From an architectural standpoint, SwiftUI's declarative paradigm and state management make it superior for maintainable, modern apps."
-4. O3: "Logically analyzing the trade-offs: UIKit offers 15+ years of stability, complete control, and proven scalability. SwiftUI has <5 years maturity with ongoing breaking changes."
-5. Claude: "Let me get Flash's quick take on developer experience..."
+3. Qwen 2.5 Coder: "From an architectural standpoint, SwiftUI's declarative paradigm and state management make it superior for maintainable, modern apps."
+4. DeepSeek R1: "Logically analyzing the trade-offs: UIKit offers 15+ years of stability, complete control, and proven scalability. SwiftUI has <5 years maturity with ongoing breaking changes."
+5. Claude: "Let me get Gemini Flash's quick take on developer experience..."
 6. Gemini Flash: "SwiftUI = faster development, less code, better previews. UIKit = more control, better debugging, stable APIs."
 7. **Claude's synthesis**: "Based on the multi-model analysis: Use SwiftUI for new projects prioritizing development speed, UIKit for apps requiring fine control or supporting older iOS versions."
 
 **Asynchronous workflow example:**
 - Claude can work independently between exchanges (analyzing code, implementing fixes, gathering data)
-- Return to Gemini with progress updates and additional context  
+- Return to models with progress updates and additional context  
 - Each exchange shares only incremental information while maintaining full conversation history
 - Automatically bypasses MCP's 25K token limits through incremental updates
 
 **Enhanced collaboration features:**
 - **Cross-questioning**: AIs can challenge each other's assumptions and approaches
 - **Coordinated problem-solving**: Each AI contributes their strengths to complex problems
-- **Context building**: Claude gathers information while Gemini provides deep analysis
+- **Context building**: Claude gathers information while models provide deep analysis
 - **Approach validation**: AIs can verify and improve each other's solutions
 - **Cross-tool continuation**: Seamlessly continue conversations across different tools while preserving all context
-- **Asynchronous workflow**: Conversations don't need to be sequential - Claude can work on tasks between exchanges, then return to Gemini with additional context and progress updates
+- **Asynchronous workflow**: Conversations don't need to be sequential - Claude can work on tasks between exchanges, then return to models with additional context and progress updates
 - **Incremental updates**: Share only new information in each exchange while maintaining full conversation history
 - **Automatic 25K limit bypass**: Each exchange sends only incremental context, allowing unlimited total conversation size
 - Up to 5 exchanges per conversation with 1-hour expiry
@@ -609,19 +728,19 @@ This server enables **true AI collaboration** between Claude and multiple AI mod
 **Cross-tool & Cross-Model Continuation Example:**
 ```
 1. Claude: "Analyze /src/auth.py for security issues"
-   → Auto mode: Claude picks Gemini Pro for deep security analysis
-   → Pro analyzes and finds vulnerabilities, provides continuation_id
+   → Auto mode: Claude picks Qwen 2.5 Coder for code analysis
+   → Qwen analyzes and finds vulnerabilities, provides continuation_id
 
 2. Claude: "Review the authentication logic thoroughly"
-   → Uses same continuation_id, but Claude picks O3 for logical analysis
-   → O3 sees previous Pro analysis and provides logic-focused review
+   → Uses same continuation_id, but Claude picks DeepSeek R1 for logical analysis
+   → DeepSeek sees previous Qwen analysis and provides logic-focused review
 
 3. Claude: "Debug the auth test failures"
-   → Same continuation_id, Claude keeps O3 for debugging
-   → O3 provides targeted debugging with full context from both previous analyses
+   → Same continuation_id, Claude keeps DeepSeek for debugging
+   → DeepSeek provides targeted debugging with full context from both previous analyses
 
 4. Claude: "Quick style check before committing"
-   → Same thread, but Claude switches to Flash for speed
+   → Same thread, but Claude switches to Gemini Flash for speed
    → Flash quickly validates formatting with awareness of all previous fixes
 ```
 
@@ -633,13 +752,13 @@ The MCP protocol has a combined request+response limit of approximately 25K toke
 1. When you send a prompt larger than the configured limit (default: 50K characters ~10-12K tokens), the server detects this
 2. It responds with a special status asking Claude to save the prompt to a file named `prompt.txt`
 3. Claude saves the prompt and resends the request with the file path instead
-4. The server reads the file content directly into Gemini's 1M token context
+4. The server reads the file content directly into the model's context
 5. The full MCP token capacity is preserved for the response
 
 **Example scenario:**
 ```
 # You have a massive code review request with detailed context
-User: "Use gemini to review this code: [50,000+ character detailed analysis]"
+User: "Use zen to review this code: [50,000+ character detailed analysis]"
 
 # Server detects the large prompt and responds:
 Zen MCP: "The prompt is too large for MCP's token limits (>50,000 characters). 
@@ -649,18 +768,18 @@ in the files parameter, along with any other files you wish to share as context.
 
 # Claude automatically handles this:
 - Saves your prompt to /tmp/prompt.txt
-- Resends: "Use gemini to review this code" with files=["/tmp/prompt.txt", "/path/to/code.py"]
+- Resends: "Use zen to review this code" with files=["/tmp/prompt.txt", "/path/to/code.py"]
 
-# Server processes the large prompt through Gemini's 1M context
+# Server processes the large prompt through model's full context
 # Returns comprehensive analysis within MCP's response limits
 ```
 
-This feature ensures you can send arbitrarily large prompts to Gemini without hitting MCP's protocol limitations, while maximizing the available space for detailed responses.
+This feature ensures you can send arbitrarily large prompts without hitting MCP's protocol limitations, while maximizing the available space for detailed responses.
 
 ### Dynamic Context Requests
-Tools can request additional context from Claude during execution. When Gemini needs more information to provide a thorough analysis, it will ask Claude for specific files or clarification, enabling true collaborative problem-solving.
+Tools can request additional context from Claude during execution. When models need more information to provide a thorough analysis, they will ask Claude for specific files or clarification, enabling true collaborative problem-solving.
 
-**Example:** If Gemini is debugging an error but needs to see a configuration file that wasn't initially provided, it can request: 
+**Example:** If a model is debugging an error but needs to see a configuration file that wasn't initially provided, it can request: 
 ```json
 {
   "status": "requires_clarification",
@@ -669,25 +788,25 @@ Tools can request additional context from Claude during execution. When Gemini n
 }
 ```
 
-Claude will then provide the requested files and Gemini can continue with a more complete analysis.
+Claude will then provide the requested files and the model can continue with a more complete analysis.
 
 ### Web Search Integration
 
 **Smart web search recommendations for enhanced analysis**
 
-Web search is now enabled by default for all tools. Instead of performing searches directly, Gemini intelligently analyzes when additional information from the web would enhance its response and provides specific search recommendations for Claude to execute.
+Web search is now enabled by default for all tools. Instead of performing searches directly, models intelligently analyze when additional information from the web would enhance their response and provide specific search recommendations for Claude to execute.
 
 **How it works:**
-1. Gemini analyzes the request and identifies areas where current documentation, API references, or community solutions would be valuable
-2. It provides its analysis based on its training data
-3. If web searches would strengthen the analysis, Gemini includes a "Recommended Web Searches for Claude" section
+1. Models analyze the request and identify areas where current documentation, API references, or community solutions would be valuable
+2. They provide their analysis based on their training data
+3. If web searches would strengthen the analysis, models include a "Recommended Web Searches for Claude" section
 4. Claude can then perform these searches and incorporate the findings
 
 **Example:**
 ```
-User: "Use gemini to debug this FastAPI async error"
+User: "Use zen to debug this FastAPI async error"
 
-Gemini's Response:
+Model's Response:
 [... debugging analysis ...]
 
 **Recommended Web Searches for Claude:**
@@ -700,16 +819,29 @@ Claude can then search for these specific topics and provide you with the most c
 
 **Benefits:**
 - Always access to latest documentation and best practices
-- Gemini focuses on reasoning about what information would help
+- Models focus on reasoning about what information would help
 - Claude maintains control over actual web searches
 - More collaborative approach between the two AI assistants
 - Reduces hallucination by encouraging verification of assumptions
 
-**Web search control:**
-Web search is enabled by default, allowing models to request Claude perform searches for current documentation and solutions. If you prefer the model to work only with its training data, you can disable web search:
+**Disabling web search:**
+If you prefer models to work only with their training data, you can disable web search:
 ```
-"Use gemini to review this code with use_websearch false"
+"Use zen to review this code with use_websearch false"
 ```
+
+### Standardized Response Format
+All tools now return structured JSON responses for consistent handling:
+```json
+{
+  "status": "success|error|requires_clarification",
+  "content": "The actual response content",
+  "content_type": "text|markdown|json",
+  "metadata": {"tool_name": "analyze", ...}
+}
+```
+
+This enables better integration, error handling, and support for the dynamic context request feature.
 
 ## Configuration
 
@@ -725,44 +857,60 @@ Set `DEFAULT_MODEL=auto` in your .env file and Claude will intelligently select 
 DEFAULT_MODEL=auto  # Claude picks the best model automatically
 
 # API Keys (at least one required)
-GEMINI_API_KEY=your-gemini-key    # Enables Gemini Pro & Flash
-OPENAI_API_KEY=your-openai-key    # Enables O3, O3-mini
+OPENROUTER_API_KEY=your-openrouter-key  # Enables 15+ FREE models!
+GEMINI_API_KEY=your-gemini-key         # Optional: Enables Gemini Pro & Flash
+OPENAI_API_KEY=your-openai-key         # Optional: Enables O3, O3-mini
 ```
 
 **How Auto Mode Works:**
 - Claude analyzes each request and selects the optimal model
 - Model selection is based on task complexity, requirements, and model strengths
-- You can always override: "Use flash for quick check" or "Use o3 to debug"
+- You can always override: "Use fast for quick check" or "Use think to debug"
 
 **Supported Models & When Claude Uses Them:**
 
 | Model | Provider | Context | Strengths | Auto Mode Usage |
 |-------|----------|---------|-----------|------------------|
-| **`pro`** (Gemini 2.5 Pro) | Google | 1M tokens | Extended thinking (up to 32K tokens), deep analysis | Complex architecture, security reviews, deep debugging |
-| **`flash`** (Gemini 2.0 Flash) | Google | 1M tokens | Ultra-fast responses | Quick checks, formatting, simple analysis |
-| **`o3`** | OpenAI | 200K tokens | Strong logical reasoning | Debugging logic errors, systematic analysis |
-| **`o3-mini`** | OpenAI | 200K tokens | Balanced speed/quality | Moderate complexity tasks |
+| **FREE MODELS** | | | | |
+| **`google/gemini-2.0-flash-exp:free`** ⭐ | OpenRouter | 1M tokens | Ultra-fast, huge context - **DEFAULT MODEL** | Default for all tasks - fast & free! |
+| **`deepseek/deepseek-r1:free`** | OpenRouter | 163K tokens | Deep reasoning (671B params) | Complex reasoning tasks |
+| **`mistralai/devstral-small:free`** | OpenRouter | 128K tokens | Code specialist (SWE-Bench 46.8%) | Code review & generation |
+| **`qwen/qwen-2.5-coder-32b-instruct:free`** | OpenRouter | 128K tokens | Best overall balance | General chat + code |
+| **`meta-llama/llama-3.3-70b-instruct:free`** | OpenRouter | 128K tokens | High-quality conversations | Complex discussions |
+| **LEGACY SHORTCUTS** (Map to Free Models) | | | | |
+| **`chat`** → qwen/qwen-2.5-coder-32b-instruct:free | OpenRouter | 128K tokens | Best overall balance | General use |
+| **`think`** → deepseek/deepseek-r1:free | OpenRouter | 163K tokens | Deep reasoning (671B params) | Complex problems |
+| **`code`** → mistralai/devstral-small:free | OpenRouter | 128K tokens | Code specialist | Code tasks |
+| **`fast`** → google/gemini-2.0-flash-exp:free | OpenRouter | 1M tokens | Ultra-fast responses | Quick checks |
+| **`smart`** → meta-llama/llama-3.3-70b-instruct:free | OpenRouter | 128K tokens | High quality | Complex chat |
 
 **Manual Model Selection:**
 You can specify a default model instead of auto mode:
 
 ```env
-# Use a specific model by default
-DEFAULT_MODEL=gemini-2.5-pro-preview-06-05  # Always use Gemini Pro
-DEFAULT_MODEL=flash                         # Always use Flash
-DEFAULT_MODEL=o3                           # Always use O3
+# Use a specific free model by default
+DEFAULT_MODEL=qwen/qwen-2.5-coder-32b-instruct:free  # Best overall
+DEFAULT_MODEL=deepseek/deepseek-r1:free              # Best reasoning
+DEFAULT_MODEL=mistralai/devstral-small:free          # Best for code
 ```
 
 **Per-Request Model Override:**
 Regardless of your default setting, you can specify models per request:
-- "Use **pro** for deep security analysis of auth.py"
-- "Use **flash** to quickly format this code"
-- "Use **o3** to debug this logic error"
-- "Review with **o3-mini** for balanced analysis"
 
-**Model Capabilities:**
-- **Gemini Models**: Support thinking modes (minimal to max), web search, 1M context
-- **O3 Models**: Excellent reasoning, systematic analysis, 200K context
+*Free Models (Recommended for most tasks):*
+- "Use **google/gemini-2.0-flash-exp:free** for quick analysis" (1M context!)
+- "Use **deepseek/deepseek-r1:free** for complex reasoning" (671B params!)
+- "Use **qwen/qwen-2.5-coder-32b-instruct:free** for code optimization"
+- "Use **mistralai/devstral-small:free** for code review" (SWE-Bench 46.8%)
+- "Use **meta-llama/llama-3.3-70b-instruct:free** for high-quality chat"
+- "Use **nvidia/llama-3.1-nemotron-ultra-253b-v1:free** for comprehensive review"
+
+**Free Model Capabilities:**
+- **DeepSeek R1**: 671B params, 163K context, open reasoning tokens
+- **Qwen Models**: Excellent coding, 32K-128K context, multilingual support
+- **Gemini Flash Free**: 1M context window, ultra-fast responses
+- **Mistral Devstral**: SWE-Bench 46.8%, specialized for code, 128K context
+- **Llama 3.3**: High-quality general chat, 128K context
 
 ### Temperature Defaults
 Different tools use optimized temperature settings:
@@ -797,10 +945,10 @@ LOG_LEVEL=DEBUG docker compose up
 
 **All file paths must be absolute paths.**
 
-When using any Gemini tool, always provide absolute paths:
+When using any Zen tool, always provide absolute paths:
 ```
-✅ "Use gemini to analyze /Users/you/project/src/main.py"
-❌ "Use gemini to analyze ./src/main.py"  (will be rejected)
+✅ "Use zen to analyze /Users/you/project/src/main.py"
+❌ "Use zen to analyze ./src/main.py"  (will be rejected)
 ```
 
 ### Security & File Access
@@ -811,7 +959,7 @@ By default, the server allows access to files within your home directory. This i
 
 ```json
 "env": {
-  "GEMINI_API_KEY": "your-key",
+  "OPENROUTER_API_KEY": "your-key",
   "WORKSPACE_ROOT": "/Users/you/project"  // Maps to /workspace inside Docker
 }
 ```
@@ -826,7 +974,7 @@ The server uses carefully crafted system prompts to give each tool specialized e
 ### Prompt Architecture
 - **Centralized Prompts**: All system prompts are defined in `prompts/tool_prompts.py`
 - **Tool Integration**: Each tool inherits from `BaseTool` and implements `get_system_prompt()`
-- **Prompt Flow**: `User Request → Tool Selection → System Prompt + Context → Gemini Response`
+- **Prompt Flow**: `User Request → Tool Selection → System Prompt + Context → Model Response`
 
 ### Specialized Expertise
 Each tool has a unique system prompt that defines its role and approach:
@@ -844,7 +992,7 @@ To modify tool behavior, you can:
 ## Testing
 
 ### Unit Tests (No API Key Required)
-The project includes comprehensive unit tests that use mocks and don't require a Gemini API key:
+The project includes comprehensive unit tests that use mocks and don't require an API key:
 
 ```bash
 # Run all unit tests
@@ -858,21 +1006,17 @@ python -m pytest tests/ --cov=. --cov-report=html
 To test the MCP server with comprehensive end-to-end simulation:
 
 ```bash
-# Set your API keys (at least one required)
-export GEMINI_API_KEY=your-gemini-api-key-here
-export OPENAI_API_KEY=your-openai-api-key-here
+# Set your API keys
+export OPENROUTER_API_KEY=your-openrouter-api-key-here
 
-# Run all simulation tests (default: uses existing Docker containers)
-python communication_simulator_test.py
+# Run all simulation tests
+python tests/integration/communication_simulator_test.py
 
 # Run specific tests only
-python communication_simulator_test.py --tests basic_conversation content_validation
-
-# Run with Docker rebuild (if needed)
-python communication_simulator_test.py --rebuild-docker
+python tests/integration/communication_simulator_test.py --tests basic_conversation content_validation
 
 # List available tests
-python communication_simulator_test.py --list-tests
+python tests/integration/communication_simulator_test.py --list-tests
 ```
 
 The simulation tests validate:
@@ -889,7 +1033,7 @@ The project includes GitHub Actions workflows that:
 - **✅ Test on Python 3.10, 3.11, 3.12** - Ensures compatibility
 - **✅ Run linting and formatting checks** - Maintains code quality
 
-The CI pipeline works without any secrets and will pass all tests using mocked responses. Simulation tests require API key secrets (`GEMINI_API_KEY` and/or `OPENAI_API_KEY`) to run the communication simulator.
+The CI pipeline works without any secrets and will pass all tests using mocked responses.
 
 ## Troubleshooting
 
@@ -898,10 +1042,10 @@ The CI pipeline works without any secrets and will pass all tests using mocked r
 **"Connection failed" in Claude Desktop**
 - Ensure Docker services are running: `docker compose ps`
 - Check if the container name is correct: `docker ps` to see actual container names
-- Verify your .env file has at least one valid API key (GEMINI_API_KEY or OPENAI_API_KEY)
+- Verify your .env file has at least one valid API key (OPENROUTER_API_KEY recommended)
 
 **"API key environment variable is required"**
-- Edit your .env file and add at least one API key (Gemini or OpenAI)
+- Edit your .env file and add your OpenRouter API key
 - Restart services: `docker compose restart`
 
 **Container fails to start**
@@ -932,8 +1076,15 @@ MIT License - see LICENSE file for details.
 
 ## Acknowledgments
 
-Built with the power of **Multi-Model AI** collaboration 🤝
+### 🙏 Special Thanks
+
+A huge thank you to **[BeehiveInnovations](https://github.com/BeehiveInnovations)** for creating the original [zen-mcp-server](https://github.com/BeehiveInnovations/zen-mcp-server)! This fork builds upon their excellent foundation to provide a 100% free model experience.
+
+### Built With
+
 - [MCP (Model Context Protocol)](https://modelcontextprotocol.com) by Anthropic
-- [Claude Code](https://claude.ai/code) - Your AI coding assistant & orchestrator
-- [Gemini 2.5 Pro & 2.0 Flash](https://ai.google.dev/) - Extended thinking & fast analysis
-- [OpenAI O3](https://openai.com/) - Strong reasoning & general intelligence
+- [OpenRouter](https://openrouter.ai/) - Unified API for FREE AI models
+- [DeepSeek](https://deepseek.com/) - 671B reasoning model (FREE!)
+- [Qwen](https://qwenlm.github.io/) - Excellent coding models (FREE!)
+- [Meta Llama](https://llama.meta.com/) - Open models (FREE!)
+- And the amazing open-source AI community 🤝

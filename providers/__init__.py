@@ -3,6 +3,7 @@
 from .base import ModelCapabilities, ModelProvider, ModelResponse
 from .gemini import GeminiModelProvider
 from .openai import OpenAIModelProvider
+from .openrouter import OpenRouterModelProvider
 from .registry import ModelProviderRegistry
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "ModelProviderRegistry",
     "GeminiModelProvider",
     "OpenAIModelProvider",
+    "OpenRouterModelProvider",
 ]

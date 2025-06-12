@@ -753,6 +753,13 @@ When recommending searches, be specific about what information you need and why 
 
                 model_name = DEFAULT_MODEL
 
+            # Resolve model aliases to full model names
+            from config import MODEL_ALIASES
+            if model_name in MODEL_ALIASES:
+                original_name = model_name
+                model_name = MODEL_ALIASES[model_name]
+                logger.info(f"Resolved model alias '{original_name}' to '{model_name}'")
+
             # In auto mode, model parameter is required
             from config import IS_AUTO_MODE
 
@@ -1204,7 +1211,14 @@ When recommending searches, be specific about what information you need and why 
 
         if not provider:
             # Try to determine provider from model name patterns
-            if "gemini" in model_name.lower() or model_name.lower() in ["flash", "pro"]:
+            if ":free" in model_name or "/" in model_name:
+                # OpenRouter models have provider/model:free format
+                from providers.base import ProviderType
+                from providers.openrouter import OpenRouterModelProvider
+
+                ModelProviderRegistry.register_provider(ProviderType.OPENROUTER, OpenRouterModelProvider)
+                provider = ModelProviderRegistry.get_provider(ProviderType.OPENROUTER)
+            elif "gemini" in model_name.lower() or model_name.lower() in ["flash", "pro"]:
                 # Register Gemini provider if not already registered
                 from providers.base import ProviderType
                 from providers.gemini import GeminiModelProvider

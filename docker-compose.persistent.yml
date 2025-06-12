@@ -1,0 +1,87 @@
+# Zen MCP Fork Persistent Server Configuration
+# This setup runs zen-mcp-fork as a standalone REST API service
+# accessible via HTTP on port 8765
+#
+# Usage:
+#   Start: docker-compose -f docker-compose.persistent.yml up -d
+#   Stop:  docker-compose -f docker-compose.persistent.yml down
+#   Logs:  docker-compose -f docker-compose.persistent.yml logs -f
+#
+# SECURITY: Ensure .env file has proper API keys and security settings
+
+services:
+  # Redis service for conversation memory and caching
+  # Stores conversation threads to enable multi-turn AI discussions
+  redis:
+    image: redis:7-alpine
+    container_name: zen-mcp-redis-persistent
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6380:6379"  # Only bind to localhost
+    volumes:
+      - redis_data:/data  # Persistent storage for conversation history
+    command: redis-server --requirepass ${REDIS_PASSWORD:-StrongDefaultPassword123!} --save 60 1 --loglevel warning --maxmemory 64mb --maxmemory-policy allkeys-lru
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-StrongDefaultPassword123!}
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-StrongDefaultPassword123!}", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+
+  # Main REST API server - provides HTTP endpoints for all zen tools
+  # Access at http://localhost:8765
+  zen-api:
+    build: .
+    image: zen-mcp-server:latest
+    container_name: zen-mcp-api
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      # API Keys - at least one is required
+      # Get FREE key from: OpenRouter.ai (no credit card!)
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      
+      # Security configuration
+      - ZEN_API_KEY=${ZEN_API_KEY:-}  # Required for REST API authentication
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-StrongDefaultPassword123!}
+      - PRODUCTION=${PRODUCTION:-false}  # Set to true for production
+      
+      # Model configuration
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-auto}  # auto = AI picks best model per task
+      - DEFAULT_THINKING_MODE_THINKDEEP=${DEFAULT_THINKING_MODE_THINKDEEP:-high}
+      
+      # System configuration
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-StrongDefaultPassword123!}@redis:6379/0
+      - WORKSPACE_ROOT=${WORKSPACE_ROOT:-${HOME}}  # Maps local paths to container
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ${HOME:-/tmp}:/workspace:ro  # Read-only access to your files
+      - mcp_logs:/tmp  # Shared log volume
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "127.0.0.1:8765:8765"  # Only bind to localhost - change port if conflicts
+    entrypoint: ["python"]
+    command: ["rest_server.py"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8765/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# Named volumes for data persistence
+volumes:
+  redis_data:  # Stores conversation history
+  mcp_logs:    # Shared logging between services
