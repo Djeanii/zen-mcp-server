@@ -1052,6 +1052,12 @@ The CI pipeline works without any secrets and will pass all tests using mocked r
 - Check if the container name is correct: `docker ps` to see actual container names
 - Verify your .env file has a valid OpenRouter API key
 
+**Environment Variable Conflicts**
+- System environment variables override .env file settings
+- Check for conflicts: `env | grep -E "(OPENROUTER|OPENAI|GEMINI)"`
+- If found, unset them: `unset OPENROUTER_API_KEY`
+- Always restart after changes: `docker-compose down && docker-compose up -d`
+
 **"API key environment variable is required"**
 - Edit your .env file and add your OpenRouter API key
 - Restart services: `docker compose restart`
@@ -1060,6 +1066,15 @@ The CI pipeline works without any secrets and will pass all tests using mocked r
 - Check logs: `docker compose logs zen-mcp`
 - Ensure Docker has enough resources (memory/disk space)
 - Try rebuilding: `docker compose build --no-cache`
+
+**Redis Port Conflicts**
+- Default Redis port 6379 may conflict with other services
+- Check what's using port 6379: `docker ps | grep 6379`
+- To use a different port, edit docker-compose.yml:
+  ```yaml
+  ports:
+    - "6380:6379"  # Change 6380 to any free port
+  ```
 
 **"spawn ENOENT" or execution issues**
 - Verify the container is running: `docker compose ps`
