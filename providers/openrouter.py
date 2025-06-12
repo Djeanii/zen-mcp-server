@@ -15,10 +15,10 @@ class OpenRouterModelProvider(ModelProvider):
     
     def __init__(self):
         """Initialize the OpenRouter provider."""
-        super().__init__()
         self.api_key = os.getenv("OPENROUTER_API_KEY")
         if not self.api_key:
             raise ValueError("OPENROUTER_API_KEY environment variable is required")
+        super().__init__(api_key=self.api_key)
         
         self.base_url = "https://openrouter.ai/api/v1/chat/completions"
         self.headers = {
