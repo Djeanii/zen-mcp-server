@@ -147,6 +147,14 @@ def configure_providers():
         ModelProviderRegistry.register_provider(ProviderType.OPENAI, OpenAIModelProvider)
         valid_providers.append("OpenAI (o3)")
         logger.info("OpenAI API key found - o3 model available")
+    
+    # Check for OpenRouter API key
+    openrouter_key = os.getenv("OPENROUTER_API_KEY")
+    if openrouter_key and openrouter_key != "your_openrouter_api_key_here":
+        from providers.openrouter import OpenRouterModelProvider
+        ModelProviderRegistry.register_provider(ProviderType.OPENROUTER, OpenRouterModelProvider)
+        valid_providers.append("OpenRouter (FREE models)")
+        logger.info("OpenRouter API key found - FREE models available")
 
     # Require at least one valid provider
     if not valid_providers:

@@ -1218,6 +1218,13 @@ When recommending searches, be specific about what information you need and why 
 
                 ModelProviderRegistry.register_provider(ProviderType.OPENAI, OpenAIModelProvider)
                 provider = ModelProviderRegistry.get_provider(ProviderType.OPENAI)
+            elif model_name.lower().endswith("-free"):
+                # Register OpenRouter provider if not already registered
+                from providers.base import ProviderType
+                from providers.openrouter import OpenRouterModelProvider
+
+                ModelProviderRegistry.register_provider(ProviderType.OPENROUTER, OpenRouterModelProvider)
+                provider = ModelProviderRegistry.get_provider(ProviderType.OPENROUTER)
 
         if not provider:
             raise ValueError(

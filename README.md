@@ -100,6 +100,7 @@ The final implementation resulted in a 26% improvement in JSON parsing performan
 ### 1. Get API Keys (at least one required)
 - **Gemini**: Visit [Google AI Studio](https://makersuite.google.com/app/apikey) and generate an API key. For best results with Gemini 2.5 Pro, use a paid API key as the free tier has limited access to the latest models.
 - **OpenAI**: Visit [OpenAI Platform](https://platform.openai.com/api-keys) to get an API key for O3 model access.
+- **OpenRouter (FREE!)**: Visit [OpenRouter](https://openrouter.ai/keys) to get a FREE API key - no credit card required! Enables access to 15+ powerful models at zero cost.
 
 ### 2. Clone and Set Up
 
@@ -128,9 +129,10 @@ nano .env
 # The file will contain:
 # GEMINI_API_KEY=your-gemini-api-key-here  # For Gemini models
 # OPENAI_API_KEY=your-openai-api-key-here  # For O3 model
+# OPENROUTER_API_KEY=your-key-here  # For FREE models!
 # WORKSPACE_ROOT=/Users/your-username  (automatically configured)
 
-# Note: At least one API key is required (Gemini or OpenAI)
+# Note: At least one API key is required (Gemini, OpenAI, or OpenRouter)
 ```
 
 ### 4. Configure Claude
@@ -727,6 +729,7 @@ DEFAULT_MODEL=auto  # Claude picks the best model automatically
 # API Keys (at least one required)
 GEMINI_API_KEY=your-gemini-key    # Enables Gemini Pro & Flash
 OPENAI_API_KEY=your-openai-key    # Enables O3, O3-mini
+OPENROUTER_API_KEY=your-key       # Enables FREE models! (No credit card)
 ```
 
 **How Auto Mode Works:**
@@ -742,6 +745,12 @@ OPENAI_API_KEY=your-openai-key    # Enables O3, O3-mini
 | **`flash`** (Gemini 2.0 Flash) | Google | 1M tokens | Ultra-fast responses | Quick checks, formatting, simple analysis |
 | **`o3`** | OpenAI | 200K tokens | Strong logical reasoning | Debugging logic errors, systematic analysis |
 | **`o3-mini`** | OpenAI | 200K tokens | Balanced speed/quality | Moderate complexity tasks |
+| **FREE MODELS via OpenRouter** | | | | |
+| **`qwen-coder-free`** | OpenRouter | 128K tokens | FREE: Best overall balance (32B) | General chat + code tasks |
+| **`deepseek-r1-free`** | OpenRouter | 163K tokens | FREE: Advanced reasoning (671B!) | Complex logical problems |
+| **`mistral-devstral-free`** | OpenRouter | 128K tokens | FREE: Code specialist | Code review and generation |
+| **`gemini-flash-free`** | OpenRouter | 1M tokens | FREE: Ultra-fast analysis | Quick checks and formatting |
+| **`llama-70b-free`** | OpenRouter | 128K tokens | FREE: High-quality chat (70B) | Thoughtful conversations |
 
 **Manual Model Selection:**
 You can specify a default model instead of auto mode:
@@ -763,6 +772,25 @@ Regardless of your default setting, you can specify models per request:
 **Model Capabilities:**
 - **Gemini Models**: Support thinking modes (minimal to max), web search, 1M context
 - **O3 Models**: Excellent reasoning, systematic analysis, 200K context
+- **Free OpenRouter Models**: Powerful models at zero cost, various specializations
+
+### Free Models via OpenRouter
+
+Access powerful AI models completely FREE with an OpenRouter API key:
+
+**Getting Started:**
+1. Get your FREE API key at https://openrouter.ai/keys (no credit card!)
+2. Add to your .env: `OPENROUTER_API_KEY=your-key-here`
+3. Use models with `-free` suffix: "Use qwen-coder-free for code review"
+
+**Available Free Models:**
+- **DeepSeek R1** (`deepseek-r1-free`) - 671B params, advanced reasoning
+- **Qwen 2.5 Coder** (`qwen-coder-free`) - Best overall balance for code
+- **Mistral Devstral** (`mistral-devstral-free`) - Code specialist
+- **Gemini Flash Free** (`gemini-flash-free`) - 1M context, ultra-fast
+- **Llama 3.3 70B** (`llama-70b-free`) - High-quality conversations
+
+**Rate Limits:** Free tier has daily limits (50-1000 requests depending on model)
 
 ### Temperature Defaults
 Different tools use optimized temperature settings:

@@ -34,6 +34,14 @@ VALID_MODELS = [
     "o3-mini",
     "gemini-2.5-flash-preview-05-20",
     "gemini-2.5-pro-preview-06-05",
+    # Free OpenRouter models
+    "qwen-coder-free",
+    "deepseek-r1-free",
+    "mistral-devstral-free",
+    "gemini-flash-free",
+    "llama-70b-free",
+    "qwq-32b-free",
+    "nemotron-free",
 ]
 if DEFAULT_MODEL not in VALID_MODELS:
     import logging
@@ -57,6 +65,14 @@ MODEL_CAPABILITIES_DESC = {
     # Full model names also supported
     "gemini-2.5-flash-preview-05-20": "Ultra-fast (1M context) - Quick analysis, simple queries, rapid iterations",
     "gemini-2.5-pro-preview-06-05": "Deep reasoning + thinking mode (1M context) - Complex problems, architecture, deep analysis",
+    # Free OpenRouter models
+    "qwen-coder-free": "FREE: Best overall balance for code + chat (32B, 128K context)",
+    "deepseek-r1-free": "FREE: Advanced reasoning model (671B, 163K context)",
+    "mistral-devstral-free": "FREE: Code specialist (SWE-Bench 46.8%, 128K context)",
+    "gemini-flash-free": "FREE: Ultra-fast with 1M context window",
+    "llama-70b-free": "FREE: High-quality general chat (70B, 128K context)",
+    "qwq-32b-free": "FREE: Step-by-step reasoning (32B, 32K context)",
+    "nemotron-free": "FREE: NVIDIA enhanced (253B, 128K context)",
 }
 
 # Token allocation for Gemini Pro (1M total capacity)
