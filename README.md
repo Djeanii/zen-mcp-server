@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/8097e18e-b926-4d8b-ba14-a979e4c58bda
   <br/>
   <i>✨ Access 15+ powerful AI models - No credit card required! ✨</i>
   <br/><br/>
-  <b>📖 New to this? Start with the <a href="README_SIMPLE.md">Simple Guide</a> for 2-minute setup!</b>
+  <b>📖 New to this? Start with the <a href="docs/QUICK_START.md">Quick Start Guide</a> for 2-minute setup!</b>
 </div>
 
 <br/>
@@ -161,14 +161,14 @@ cd zen-mcp-fork
 
 # Add your FREE key and start
 export OPENROUTER_API_KEY=sk-or-v1-your-key-here
-./quickstart.sh
+./scripts/quickstart.sh
 
 # That's it! 🎉
 ```
 
 For advanced setup with REST API:
 ```bash
-./quickstart.sh --advanced
+./scripts/quickstart.sh --advanced
 ```
 
 > **💡 Configuration Note**: 
@@ -187,8 +187,8 @@ With Claude Code:
 
 Or with CLI (if using --advanced):
 ```bash
-./zen-cli.sh chat "Hello!"     # Uses best free chat model
-./zen-cli.sh think "Design ideas"  # Uses DeepSeek R1
+./scripts/zen-cli.sh chat "Hello!"     # Uses best free chat model
+./scripts/zen-cli.sh think "Design ideas"  # Uses DeepSeek R1
 ```
 
 ### 4. Configure Claude
@@ -316,12 +316,12 @@ Run zen-mcp as a standalone REST API server for direct access without Claude! Pe
 
 ```bash
 # Start the persistent server
-./zen-cli.sh start
+./scripts/zen-cli.sh start
 
 # Use the CLI tool
-./zen-cli.sh chat "What's the best way to implement caching?"
-./zen-cli.sh review /path/to/file.py
-./zen-cli.sh debug "TypeError: cannot read property 'id' of undefined"
+./scripts/zen-cli.sh chat "What's the best way to implement caching?"
+./scripts/zen-cli.sh review /path/to/file.py
+./scripts/zen-cli.sh debug "TypeError: cannot read property 'id' of undefined"
 
 # Or use the REST API directly
 curl -X POST http://localhost:8765/tools/chat \
@@ -351,7 +351,7 @@ zen-mcp-fork/
 ### 📚 Documentation
 
 **New Users:**
-- **[README_SIMPLE.md](README_SIMPLE.md)** - 2-minute setup guide
+- **[docs/QUICK_START.md](docs/QUICK_START.md)** - 2-minute setup guide
 - **[docs/FREE_MODELS_GUIDE.md](docs/FREE_MODELS_GUIDE.md)** - Simple model names & usage
 
 **Advanced Setup:**
