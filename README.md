@@ -266,13 +266,13 @@ Just ask Claude naturally:
 - "Using zen perform a code review of this code for security issues" → Claude might pick Qwen 2.5 Coder + `codereview`
 - "Use zen and debug why this test is failing, the bug might be in my_class.swift" → Claude might pick DeepSeek R1 + `debug`
 - "With zen, analyze these files to understand the data flow" → Claude picks appropriate model + `analyze`
-- "Use fast to suggest how to format this code based on the specs mentioned in policy.md" → Uses Gemini Flash specifically
+- "Use fast to suggest how to format this code based on the specs mentioned in policy.md" → Uses Gemini Flash FREE specifically
 - "Think deeply about this and get think to debug this logic error I found in the checkOrders() function" → Uses DeepSeek R1 specifically
 - "Brainstorm scaling strategies with smart. Study the code, pick your preferred strategy and debate with smart to settle on two best approaches" → Uses Llama 3.3 specifically
 
 > **Remember:** Claude remains in control — but **you** are the true orchestrator.  
 > You're the prompter, the guide, the puppeteer.  
-> Your prompt decides when Claude brings in another model — or handles it solo.
+> Your prompt decides when Claude brings in other models — or handles it solo.
 
 ## Available Tools
 
@@ -289,11 +289,11 @@ Just ask Claude naturally:
 
 **Model Selection Examples:**
 - Complex architecture review → Claude picks DeepSeek R1
-- Quick formatting check → Claude picks Gemini Flash
+- Quick formatting check → Claude picks Gemini Flash FREE
 - Logical debugging → Claude picks Qwen QwQ
 - General explanations → Claude picks Qwen 2.5 Coder for balance
 
-**Pro Tip:** Thinking modes (for DeepSeek models) control depth vs token cost. Use "minimal" or "low" for quick tasks, "high" or "max" for complex problems. [Learn more](#thinking-modes---managing-token-costs--quality)
+**Pro Tip:** Thinking modes (for models that support it) control depth vs token cost. Use "minimal" or "low" for quick tasks, "high" or "max" for complex problems. [Learn more](#thinking-modes---managing-token-costs--quality)
 
 **Tools Overview:**
 1. [`chat`](#1-chat---general-development-chat--collaborative-thinking) - Collaborative thinking and development conversations
@@ -390,7 +390,7 @@ and then debate with the other models to give me a final verdict
 - General development questions and explanations
 - Technology comparisons and best practices
 - Architecture and design discussions
-- Can reference files for context: `"Use zen to explain this algorithm with context from algorithm.py"`
+- Can reference files for context: `"Use chat to explain this algorithm with context from algorithm.py"`
 - **Dynamic collaboration**: Models can request additional files or context during the conversation if needed for a more thorough response
 - **Web search capability**: Analyzes when web searches would be helpful and recommends specific searches for Claude to perform, ensuring access to current documentation and best practices
 
@@ -408,13 +408,13 @@ with the best architecture for my project
 ```
 
 **Key Features:**
-- **Uses DeepSeek R1's reasoning capabilities** for enhanced analysis
+- **Uses models with advanced reasoning capabilities** for enhanced analysis
 - Provides a second opinion on Claude's analysis
 - Challenges assumptions and identifies edge cases Claude might miss
 - Offers alternative perspectives and approaches
 - Validates architectural decisions and design patterns
-- Can reference specific files for context: `"Use zen to think deeper about my API design with reference to api/routes.py"`
-- **Enhanced Critical Evaluation**: After model's analysis, Claude is prompted to critically evaluate the suggestions, consider context and constraints, identify risks, and synthesize a final recommendation - ensuring a balanced, well-considered solution
+- Can reference specific files for context: `"Use think to think deeper about my API design with reference to api/routes.py"`
+- **Enhanced Critical Evaluation**: After the model's analysis, Claude is prompted to critically evaluate the suggestions, consider context and constraints, identify risks, and synthesize a final recommendation - ensuring a balanced, well-considered solution
 - **Web search capability**: When enabled (default: true), identifies areas where current documentation or community solutions would strengthen the analysis and suggests specific searches for Claude
 
 ### 3. `codereview` - Professional Code Review  
@@ -425,15 +425,15 @@ with the best architecture for my project
 #### Example Prompts:
 
 ```
-Perform a codereview with zen and review auth.py for security issues and potential vulnerabilities.
+Perform a codereview with code and review auth.py for security issues and potential vulnerabilities.
 I need an actionable plan but break it down into smaller quick-wins that we can implement and test rapidly 
 ```
 
 **Key Features:**
 - Issues prioritized by severity (🔴 CRITICAL → 🟢 LOW)
 - Supports specialized reviews: security, performance, quick
-- Can enforce coding standards: `"Use zen to review src/ against PEP8 standards"`
-- Filters by severity: `"Get zen to review auth/ - only report critical vulnerabilities"`
+- Can enforce coding standards: `"Use code to review src/ against PEP8 standards"`
+- Filters by severity: `"Get code to review auth/ - only report critical vulnerabilities"`
 
 ### 4. `precommit` - Pre-Commit Validation
 **Comprehensive review of staged/unstaged git changes across multiple repositories**
@@ -446,7 +446,7 @@ I need an actionable plan but break it down into smaller quick-wins that we can 
 
 **Prompt Used:**
 ```
-Now use zen and perform a review and precommit and ensure original requirements are met, no duplication of code or
+Now use code and perform a review and precommit and ensure original requirements are met, no duplication of code or
 logic, everything should work as expected
 ```
 
@@ -474,6 +474,7 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 - `review_type`: full|security|performance|quick
 - `severity_filter`: Filter by issue severity
 - `max_depth`: How deep to search for nested repos
+
 ### 5. `debug` - Expert Debugging Assistant
 **Root cause analysis for complex problems**
 
@@ -483,8 +484,8 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 
 **Basic Usage:**
 ```
-"Use zen to debug this TypeError: 'NoneType' object has no attribute 'split'"
-"Get zen to debug why my API returns 500 errors with the full stack trace: [paste traceback]"
+"Use smart to debug this TypeError: 'NoneType' object has no attribute 'split'"
+"Get think to debug why my API returns 500 errors with the full stack trace: [paste traceback]"
 ```
 
 **Key Features:**
@@ -495,6 +496,7 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 - Provides structured root cause analysis with validation steps
 - Can request additional context when needed for thorough analysis
 - **Web search capability**: When enabled (default: true), identifies when searching for error messages, known issues, or documentation would help solve the problem and recommends specific searches for Claude
+
 ### 6. `analyze` - Smart File Analysis
 **General-purpose code understanding and exploration**
 
@@ -504,8 +506,8 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 
 **Basic Usage:**
 ```
-"Use zen to analyze main.py to understand how it works"
-"Get zen to do an architecture analysis of the src/ directory"
+"Use chat to analyze main.py to understand how it works"
+"Get think to do an architecture analysis of the src/ directory"
 ```
 
 **Key Features:**
@@ -514,6 +516,7 @@ Use zen and perform a thorough precommit ensuring there aren't any new regressio
 - Uses file paths (not content) for clean terminal output
 - Can identify patterns, anti-patterns, and refactoring opportunities
 - **Web search capability**: When enabled with `use_websearch`, can look up framework documentation, design patterns, and best practices relevant to the code being analyzed
+
 ### 7. `get_version` - Server Information
 ```
 "Use zen for its version"
@@ -532,7 +535,7 @@ All tools that work with files support **both individual files and entire direct
 - `model`: auto|chat|think|code|fast|smart (default: server default)
 - `analysis_type`: architecture|performance|security|quality|general
 - `output_format`: summary|detailed|actionable
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, models that support it)
 - `use_websearch`: Enable web search for documentation and best practices (default: false)
 
 ```
@@ -549,7 +552,7 @@ All tools that work with files support **both individual files and entire direct
 - `focus_on`: Specific aspects to focus on
 - `standards`: Coding standards to enforce
 - `severity_filter`: critical|high|medium|all
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, models that support it)
 
 ```
 "Review the entire api/ directory for security issues" (auto mode picks best model)
@@ -565,7 +568,7 @@ All tools that work with files support **both individual files and entire direct
 - `files`: Files or directories related to the issue
 - `runtime_info`: Environment details
 - `previous_attempts`: What you've tried
-- `thinking_mode`: minimal|low|medium|high|max (default: medium, DeepSeek only)
+- `thinking_mode`: minimal|low|medium|high|max (default: medium, models that support it)
 - `use_websearch`: Enable web search for error messages and solutions (default: false)
 
 ```
@@ -580,7 +583,7 @@ All tools that work with files support **both individual files and entire direct
 - `problem_context`: Additional context
 - `focus_areas`: Specific aspects to focus on
 - `files`: Files or directories for context
-- `thinking_mode`: minimal|low|medium|high|max (default: max, DeepSeek only)
+- `thinking_mode`: minimal|low|medium|high|max (default: max, models that support it)
 - `use_websearch`: Enable web search for documentation and insights (default: false)
 
 ```
@@ -593,20 +596,20 @@ All tools that work with files support **both individual files and entire direct
 
 ### Design → Review → Implement
 ```
-"Design a real-time collaborative editor. Use zen to think deeper about edge cases and scalability.
-Implement an improved version incorporating zen's suggestions."
+Design a real-time collaborative editor. Use zen to think deeper about edge cases and scalability.
+Implement an improved version incorporating zen's suggestions.
 ```
 
 ### Code → Review → Fix
 ```
-"Implement JWT authentication. Get zen to do a security review. Fix any issues zen identifies and
-show me the secure implementation."
+Implement JWT authentication. Get zen to do a security review. Fix any issues zen identifies and
+show me the secure implementation.
 ```
 
 ### Debug → Analyze → Solution
 ```
-"Debug why our API crashes under load. Use zen to analyze deeper with context from api/handlers/. Implement a
-fix based on zen's root cause analysis."
+Debug why our API crashes under load. Use zen to analyze deeper with context from api/handlers/. Implement a
+fix based on zen's root cause analysis.
 ```
 
 ### Tool Selection Guidance
@@ -626,7 +629,7 @@ To help choose the right tool for your needs:
 
 ## Thinking Modes - Managing Token Costs & Quality
 
-**Claude automatically manages thinking modes based on task complexity**, but you can also manually control model reasoning depth to balance between response quality and token consumption. Each thinking mode uses a different amount of tokens, directly affecting API costs and response time.
+**Claude automatically manages thinking modes based on task complexity**, but you can also manually control the reasoning depth to balance between response quality and token consumption. Each thinking mode uses a different amount of tokens, directly affecting API costs and response time.
 
 ### Thinking Modes & Token Budgets
 
@@ -669,17 +672,17 @@ These only apply to models that support customizing token usage for extended thi
 
 **Examples by scenario:**
 ```
-# Quick style check
+# Quick style check with fast
 "Use fast to review formatting in utils.py"
 
-# Security audit
+# Security audit with think
 "Get think to do a security review of auth/ with thinking mode high"
 
 # Complex debugging
 "Use zen to debug this race condition with max thinking mode"
 
-# Architecture analysis with DeepSeek R1
-"Analyze the entire src/ directory architecture with high thinking using think"
+# Architecture analysis with smart
+"Analyze the entire src/ directory architecture with high thinking using smart"
 ```
 
 ## Advanced Features
@@ -704,7 +707,7 @@ This server enables **true AI collaboration** between Claude and multiple AI mod
 3. Qwen 2.5 Coder: "From an architectural standpoint, SwiftUI's declarative paradigm and state management make it superior for maintainable, modern apps."
 4. DeepSeek R1: "Logically analyzing the trade-offs: UIKit offers 15+ years of stability, complete control, and proven scalability. SwiftUI has <5 years maturity with ongoing breaking changes."
 5. Claude: "Let me get Gemini Flash's quick take on developer experience..."
-6. Gemini Flash: "SwiftUI = faster development, less code, better previews. UIKit = more control, better debugging, stable APIs."
+6. Gemini Flash FREE: "SwiftUI = faster development, less code, better previews. UIKit = more control, better debugging, stable APIs."
 7. **Claude's synthesis**: "Based on the multi-model analysis: Use SwiftUI for new projects prioritizing development speed, UIKit for apps requiring fine control or supporting older iOS versions."
 
 **Asynchronous workflow example:**
@@ -728,7 +731,7 @@ This server enables **true AI collaboration** between Claude and multiple AI mod
 **Cross-tool & Cross-Model Continuation Example:**
 ```
 1. Claude: "Analyze /src/auth.py for security issues"
-   → Auto mode: Claude picks Qwen 2.5 Coder for code analysis
+   → Auto mode: Claude picks Qwen 2.5 Coder for deep security analysis
    → Qwen analyzes and finds vulnerabilities, provides continuation_id
 
 2. Claude: "Review the authentication logic thoroughly"
@@ -774,7 +777,7 @@ in the files parameter, along with any other files you wish to share as context.
 # Returns comprehensive analysis within MCP's response limits
 ```
 
-This feature ensures you can send arbitrarily large prompts without hitting MCP's protocol limitations, while maximizing the available space for detailed responses.
+This feature ensures you can send arbitrarily large prompts to models without hitting MCP's protocol limitations, while maximizing the available space for detailed responses.
 
 ### Dynamic Context Requests
 Tools can request additional context from Claude during execution. When models need more information to provide a thorough analysis, they will ask Claude for specific files or clarification, enabling true collaborative problem-solving.
@@ -858,8 +861,8 @@ DEFAULT_MODEL=auto  # Claude picks the best model automatically
 
 # API Keys (at least one required)
 OPENROUTER_API_KEY=your-openrouter-key  # Enables 15+ FREE models!
-GEMINI_API_KEY=your-gemini-key         # Optional: Enables Gemini Pro & Flash
-OPENAI_API_KEY=your-openai-key         # Optional: Enables O3, O3-mini
+GEMINI_API_KEY=your-gemini-key    # Enables Gemini Pro & Flash (optional)
+OPENAI_API_KEY=your-openai-key    # Enables O3, O3-mini (optional)
 ```
 
 **How Auto Mode Works:**
@@ -873,16 +876,18 @@ OPENAI_API_KEY=your-openai-key         # Optional: Enables O3, O3-mini
 |-------|----------|---------|-----------|------------------|
 | **FREE MODELS** | | | | |
 | **`google/gemini-2.0-flash-exp:free`** ⭐ | OpenRouter | 1M tokens | Ultra-fast, huge context - **DEFAULT MODEL** | Default for all tasks - fast & free! |
-| **`deepseek/deepseek-r1:free`** | OpenRouter | 163K tokens | Deep reasoning (671B params) | Complex reasoning tasks |
-| **`mistralai/devstral-small:free`** | OpenRouter | 128K tokens | Code specialist (SWE-Bench 46.8%) | Code review & generation |
-| **`qwen/qwen-2.5-coder-32b-instruct:free`** | OpenRouter | 128K tokens | Best overall balance | General chat + code |
-| **`meta-llama/llama-3.3-70b-instruct:free`** | OpenRouter | 128K tokens | High-quality conversations | Complex discussions |
-| **LEGACY SHORTCUTS** (Map to Free Models) | | | | |
-| **`chat`** → qwen/qwen-2.5-coder-32b-instruct:free | OpenRouter | 128K tokens | Best overall balance | General use |
-| **`think`** → deepseek/deepseek-r1:free | OpenRouter | 163K tokens | Deep reasoning (671B params) | Complex problems |
+| **`deepseek/deepseek-r1:free`** | OpenRouter | 163K tokens | Advanced reasoning (671B) - FREE | Complex logical problems |
+| **`mistralai/devstral-small:free`** | OpenRouter | 128K tokens | Code specialist - FREE | Code review and generation |
+| **`qwen/qwen-2.5-coder-32b-instruct:free`** | OpenRouter | 128K tokens | Best overall balance - FREE | General chat + code |
+| **`meta-llama/llama-3.3-70b-instruct:free`** | OpenRouter | 128K tokens | High-quality - FREE | Thoughtful conversations |
+| **`qwen/qwq-32b:free`** | OpenRouter | 32K tokens | Step-by-step reasoning - FREE | Logic problems |
+| **`nvidia/llama-3.1-nemotron-ultra-253b-v1:free`** | OpenRouter | 128K tokens | NVIDIA's enhanced - FREE | Large-scale analysis |
+| **SIMPLE ALIASES** (Map to Free Models) | | | | |
+| **`chat`** → qwen/qwen-2.5-coder-32b-instruct:free | OpenRouter | 128K tokens | Best overall | General conversations |
+| **`think`** → deepseek/deepseek-r1:free | OpenRouter | 163K tokens | Deep reasoning (671B) | Complex problems |
 | **`code`** → mistralai/devstral-small:free | OpenRouter | 128K tokens | Code specialist | Code tasks |
-| **`fast`** → google/gemini-2.0-flash-exp:free | OpenRouter | 1M tokens | Ultra-fast responses | Quick checks |
-| **`smart`** → meta-llama/llama-3.3-70b-instruct:free | OpenRouter | 128K tokens | High quality | Complex chat |
+| **`fast`** → google/gemini-2.0-flash-exp:free | OpenRouter | 1M tokens | Ultra-fast | Quick checks |
+| **`smart`** → meta-llama/llama-3.3-70b-instruct:free | OpenRouter | 128K tokens | High quality | Thoughtful analysis |
 
 **Manual Model Selection:**
 You can specify a default model instead of auto mode:
@@ -945,7 +950,7 @@ LOG_LEVEL=DEBUG docker compose up
 
 **All file paths must be absolute paths.**
 
-When using any Zen tool, always provide absolute paths:
+When using any tool, always provide absolute paths:
 ```
 ✅ "Use zen to analyze /Users/you/project/src/main.py"
 ❌ "Use zen to analyze ./src/main.py"  (will be rejected)
@@ -992,7 +997,7 @@ To modify tool behavior, you can:
 ## Testing
 
 ### Unit Tests (No API Key Required)
-The project includes comprehensive unit tests that use mocks and don't require an API key:
+The project includes comprehensive unit tests that use mocks and don't require API keys:
 
 ```bash
 # Run all unit tests
@@ -1006,14 +1011,17 @@ python -m pytest tests/ --cov=. --cov-report=html
 To test the MCP server with comprehensive end-to-end simulation:
 
 ```bash
-# Set your API keys
+# Set your API key
 export OPENROUTER_API_KEY=your-openrouter-api-key-here
 
-# Run all simulation tests
+# Run all simulation tests (default: uses existing Docker containers)
 python tests/integration/communication_simulator_test.py
 
 # Run specific tests only
 python tests/integration/communication_simulator_test.py --tests basic_conversation content_validation
+
+# Run with Docker rebuild (if needed)
+python tests/integration/communication_simulator_test.py --rebuild-docker
 
 # List available tests
 python tests/integration/communication_simulator_test.py --list-tests
@@ -1033,7 +1041,7 @@ The project includes GitHub Actions workflows that:
 - **✅ Test on Python 3.10, 3.11, 3.12** - Ensures compatibility
 - **✅ Run linting and formatting checks** - Maintains code quality
 
-The CI pipeline works without any secrets and will pass all tests using mocked responses.
+The CI pipeline works without any secrets and will pass all tests using mocked responses. Simulation tests require API key secrets (`OPENROUTER_API_KEY`) to run the communication simulator.
 
 ## Troubleshooting
 
@@ -1042,7 +1050,7 @@ The CI pipeline works without any secrets and will pass all tests using mocked r
 **"Connection failed" in Claude Desktop**
 - Ensure Docker services are running: `docker compose ps`
 - Check if the container name is correct: `docker ps` to see actual container names
-- Verify your .env file has at least one valid API key (OPENROUTER_API_KEY recommended)
+- Verify your .env file has a valid OpenRouter API key
 
 **"API key environment variable is required"**
 - Edit your .env file and add your OpenRouter API key
@@ -1069,6 +1077,43 @@ docker exec -i zen-mcp-server echo "Connection test"
 # View logs
 docker compose logs -f
 ```
+
+### Rate Limiting Issues
+
+**"Rate limit exceeded" errors**
+- Free tier has limits (50-1000 requests/day depending on usage)
+- Try different free models
+- Space out your requests
+- Consider minimal OpenRouter credits to increase limits
+
+### Model Not Found
+
+**"No provider found for model"**
+- Ensure you're using the exact model ID with `:free` suffix
+- Check your OpenRouter API key is valid
+- Try using simple aliases: `chat`, `think`, `code`, `fast`, `smart`
+
+## Windows Setup Guide
+
+For Windows users, you'll need WSL2 (Windows Subsystem for Linux) to run Claude Code CLI:
+
+1. **Install WSL2**:
+   ```powershell
+   wsl --install
+   ```
+
+2. **Install Docker Desktop for Windows** and enable WSL2 integration
+
+3. **Clone and setup in WSL2**:
+   ```bash
+   # In WSL2 terminal
+   cd ~
+   git clone https://github.com/[your-username]/zen-mcp-fork.git
+   cd zen-mcp-fork
+   ./quickstart.sh
+   ```
+
+4. **Configure Claude Desktop** with the Windows path format
 
 ## License
 
