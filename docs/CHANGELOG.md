@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.2] - 2025-06-12 - OpenRouterModelProvider Fix
+
+### 🐛 Fixed
+- **Fixed OpenRouterModelProvider missing abstract methods** - The provider was missing required implementations from the ModelProvider base class:
+  - Added `count_tokens()` method implementation
+  - Added `get_provider_type()` method returning "openrouter"
+  - Added `supports_thinking_mode()` method with proper model detection
+  - Fixed constructor to properly call parent class `__init__()`
+  - Added synchronous wrappers for async methods to maintain compatibility
+
+### 🔧 Technical Details
+- **Issue**: TypeError when using any Zen MCP tools due to missing abstract method implementations
+- **Root Cause**: OpenRouterModelProvider class was not fully implementing the ModelProvider interface
+- **Solution**: Implemented all required abstract methods with appropriate logic
+- **Impact**: All Zen MCP tools now work correctly with OpenRouter models
+
+### 📝 Other Changes
+- Fixed docker-compose.yml log monitor path to correctly reference the script location
+
 ## [1.1.1] - 2025-06-12 - Project Organization
 
 ### 📁 Project Structure Cleanup

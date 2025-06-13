@@ -62,7 +62,7 @@ services:
       - mcp_logs:/tmp  # Shared volume for logs
       - /etc/localtime:/etc/localtime:ro
     entrypoint: ["python"]
-    command: ["log_monitor.py"]
+    command: ["bin/log_monitor.py"]
 
 volumes:
   redis_data:

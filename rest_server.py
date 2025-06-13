@@ -177,7 +177,7 @@ async def health_check(request: web.Request) -> web.Response:
     """Health check endpoint."""
     return web.json_response({
         "status": "healthy",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "mode": "production" if PRODUCTION_MODE else "development",
         "timestamp": time.time()
     })

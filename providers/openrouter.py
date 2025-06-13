@@ -1,9 +1,9 @@
 """OpenRouter provider for accessing free AI models."""
 
-import json
+import asyncio
 import logging
 import os
-from typing import Any, Optional
+from typing import Optional
 
 import aiohttp
 
@@ -16,11 +16,19 @@ logger = logging.getLogger(__name__)
 class OpenRouterModelProvider(ModelProvider):
     """Provider for OpenRouter free tier models."""
 
-    def __init__(self):
+    def __init__(self, api_key: str = None, **kwargs):
         """Initialize OpenRouter provider with API key."""
-        self.api_key = os.getenv("OPENROUTER_API_KEY")
+        # Allow API key to be passed in or read from environment
+        if api_key:
+            self.api_key = api_key
+        else:
+            self.api_key = os.getenv("OPENROUTER_API_KEY")
+        
         if not self.api_key:
-            raise ValueError("OPENROUTER_API_KEY environment variable is required")
+            raise ValueError("OPENROUTER_API_KEY must be provided or set as environment variable")
+        
+        # Call parent constructor
+        super().__init__(self.api_key, **kwargs)
         
         self.base_url = "https://openrouter.ai/api/v1"
         self.provider_type = ProviderType.OPENROUTER
@@ -143,30 +151,48 @@ class OpenRouterModelProvider(ModelProvider):
             ),
         }
 
-    def supports_model(self, model_name: str) -> bool:
-        """Check if this provider supports the given model."""
+    def validate_model_name(self, model_name: str) -> bool:
+        """Validate if the model name is supported by this provider."""
         # Resolve aliases
         if model_name in MODEL_ALIASES:
             model_name = MODEL_ALIASES[model_name]
         return model_name in self.models
 
-    def get_model_capabilities(self, model_name: str) -> Optional[ModelCapabilities]:
+    def supports_model(self, model_name: str) -> bool:
+        """Check if this provider supports the given model (backward compatibility)."""
+        return self.validate_model_name(model_name)
+
+    def get_capabilities(self, model_name: str) -> ModelCapabilities:
         """Get capabilities for a specific model."""
         # Resolve aliases
         if model_name in MODEL_ALIASES:
             model_name = MODEL_ALIASES[model_name]
-        return self.models.get(model_name)
+        
+        if model_name not in self.models:
+            raise ValueError(f"Model {model_name} not supported by OpenRouter provider")
+        
+        return self.models[model_name]
 
-    async def generate_response(
+    def get_model_capabilities(self, model_name: str) -> Optional[ModelCapabilities]:
+        """Get capabilities for a specific model (backward compatibility)."""
+        try:
+            return self.get_capabilities(model_name)
+        except ValueError:
+            return None
+
+    async def _generate_content_async(
         self,
+        prompt: str,
         model_name: str,
-        system_prompt: str,
-        user_prompt: str,
+        system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        thinking_mode: Optional[str] = None,
+        max_output_tokens: Optional[int] = None,
         **kwargs
     ) -> ModelResponse:
         """Generate a response using OpenRouter API."""
+        # Extract thinking_mode from kwargs if present
+        thinking_mode = kwargs.get('thinking_mode', None)
+        
         # Resolve aliases
         original_name = model_name
         if model_name in MODEL_ALIASES:
@@ -183,16 +209,17 @@ class OpenRouterModelProvider(ModelProvider):
             "X-Title": "Zen MCP Fork"
         }
         
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
+        # Build messages list
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
         
         data = {
             "model": model_name,
             "messages": messages,
             "temperature": temperature,
-            "max_tokens": 8192,  # Reasonable default
+            "max_tokens": max_output_tokens or 8192,  # Use provided value or reasonable default
         }
         
         try:
@@ -285,6 +312,65 @@ class OpenRouterModelProvider(ModelProvider):
                 }
             )
 
+    def generate_content(
+        self,
+        prompt: str,
+        model_name: str,
+        system_prompt: Optional[str] = None,
+        temperature: float = 0.7,
+        max_output_tokens: Optional[int] = None,
+        **kwargs
+    ) -> ModelResponse:
+        """Generate content using the model (synchronous wrapper)."""
+        # Get or create event loop
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            # No running loop, create a new one
+            return asyncio.run(self._generate_content_async(
+                prompt=prompt,
+                model_name=model_name,
+                system_prompt=system_prompt,
+                temperature=temperature,
+                max_output_tokens=max_output_tokens,
+                **kwargs
+            ))
+        else:
+            # We're already in an async context, create a task
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                future = executor.submit(
+                    asyncio.run,
+                    self._generate_content_async(
+                        prompt=prompt,
+                        model_name=model_name,
+                        system_prompt=system_prompt,
+                        temperature=temperature,
+                        max_output_tokens=max_output_tokens,
+                        **kwargs
+                    )
+                )
+                return future.result()
+
+    async def generate_response(
+        self,
+        model_name: str,
+        system_prompt: str,
+        user_prompt: str,
+        temperature: float = 0.7,
+        thinking_mode: Optional[str] = None,
+        **kwargs
+    ) -> ModelResponse:
+        """Generate a response using OpenRouter API (backward compatibility wrapper)."""
+        return await self._generate_content_async(
+            prompt=user_prompt,
+            model_name=model_name,
+            system_prompt=system_prompt,
+            temperature=temperature,
+            thinking_mode=thinking_mode,
+            **kwargs
+        )
+
     def validate_temperature(self, temperature: float) -> bool:
         """Validate temperature is within acceptable range."""
         return 0.0 <= temperature <= 2.0
@@ -292,3 +378,25 @@ class OpenRouterModelProvider(ModelProvider):
     def get_temperature_range(self) -> tuple[float, float]:
         """Get valid temperature range for this provider."""
         return (0.0, 2.0)
+
+    def count_tokens(self, text: str, model_name: str) -> int:
+        """Count tokens for the given text using the specified model's tokenizer."""
+        # For now, use a simple estimation similar to other providers
+        # Rough estimation: ~4 characters per token for English text
+        # Note: model_name parameter is required by base class but not used in estimation
+        return len(text) // 4
+
+    def get_provider_type(self) -> ProviderType:
+        """Get the provider type."""
+        return ProviderType.OPENROUTER
+
+    def supports_thinking_mode(self, model_name: str) -> bool:
+        """Check if the model supports extended thinking mode."""
+        # Resolve aliases
+        if model_name in MODEL_ALIASES:
+            model_name = MODEL_ALIASES[model_name]
+        
+        # Check if model exists and supports thinking
+        if model_name in self.models:
+            return self.models[model_name].supports_thinking_mode
+        return False
