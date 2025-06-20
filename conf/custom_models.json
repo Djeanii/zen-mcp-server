@@ -49,92 +49,81 @@
   },
   "models": [
     {
-      "model_name": "anthropic/claude-3-opus",
-      "aliases": ["opus", "claude-opus", "claude3-opus", "claude-3-opus"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": false,
-      "supports_function_calling": false,
-      "supports_images": true,
-      "max_image_size_mb": 5.0,
-      "description": "Claude 3 Opus - Most capable Claude model with vision"
-    },
-    {
-      "model_name": "anthropic/claude-3-sonnet",
-      "aliases": ["sonnet", "claude-sonnet", "claude3-sonnet", "claude-3-sonnet", "claude"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": false,
-      "supports_function_calling": false,
-      "supports_images": true,
-      "max_image_size_mb": 5.0,
-      "description": "Claude 3 Sonnet - Balanced performance with vision"
-    },
-    {
-      "model_name": "anthropic/claude-3-haiku",
-      "aliases": ["haiku", "claude-haiku", "claude3-haiku", "claude-3-haiku"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": false,
-      "supports_function_calling": false,
-      "supports_images": true,
-      "max_image_size_mb": 5.0,
-      "description": "Claude 3 Haiku - Fast and efficient with vision"
-    },
-    {
-      "model_name": "google/gemini-2.5-pro-preview",
-      "aliases": ["pro","gemini-pro", "gemini", "pro-openrouter"],
-      "context_window": 1048576,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": false,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "description": "Google's Gemini 2.5 Pro via OpenRouter with vision"
-    },
-    {
-      "model_name": "google/gemini-2.5-flash",
-      "aliases": ["flash","gemini-flash", "flash-openrouter", "flash-2.5"],
-      "context_window": 1048576,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": false,
-      "supports_images": true,
-      "max_image_size_mb": 15.0,
-      "description": "Google's Gemini 2.5 Flash via OpenRouter with vision"
-    },
-    {
-      "model_name": "mistral/mistral-large",
-      "aliases": ["mistral-large", "mistral"],
+      "model_name": "qwen/qwen-2.5-coder-32b-instruct:free",
+      "aliases": ["coder", "qwen-coder", "code", "qwen-free"],
       "context_window": 128000,
       "supports_extended_thinking": false,
       "supports_json_mode": true,
       "supports_function_calling": true,
       "supports_images": false,
       "max_image_size_mb": 0.0,
-      "description": "Mistral's largest model (text-only)"
+      "description": "Qwen 2.5 Coder 32B - Specialized for code generation and review (FREE)"
+    },
+    {
+      "model_name": "deepseek/deepseek-r1:free",
+      "aliases": ["reasoning", "r1", "deepseek", "thinking"],
+      "context_window": 163000,
+      "supports_extended_thinking": true,
+      "supports_json_mode": true,
+      "supports_function_calling": true,
+      "supports_images": false,
+      "max_image_size_mb": 0.0,
+      "description": "DeepSeek R1 with thinking mode - 671B params, advanced reasoning (FREE)"
+    },
+    {
+      "model_name": "mistralai/devstral-small:free",
+      "aliases": ["devstral", "mistral", "mistral-dev"],
+      "context_window": 128000,
+      "supports_extended_thinking": false,
+      "supports_json_mode": true,
+      "supports_function_calling": true,
+      "supports_images": false,
+      "max_image_size_mb": 0.0,
+      "description": "Mistral Devstral Small - Code generation and development tasks (FREE)"
+    },
+    {
+      "model_name": "google/gemini-flash-1.5:free",
+      "aliases": ["flash", "fast", "gemini-flash", "gemini-fast"],
+      "context_window": 1000000,
+      "supports_extended_thinking": false,
+      "supports_json_mode": true,
+      "supports_function_calling": true,
+      "supports_images": true,
+      "max_image_size_mb": 20.0,
+      "description": "Google Gemini 1.5 Flash - Ultra-fast with 1M context (FREE)"
+    },
+    {
+      "model_name": "meta-llama/llama-3.3-70b-instruct:free",
+      "aliases": ["llama", "chat", "pro", "general"],
+      "context_window": 128000,
+      "supports_extended_thinking": false,
+      "supports_json_mode": true,
+      "supports_function_calling": true,
+      "supports_images": false,
+      "max_image_size_mb": 0.0,
+      "description": "Llama 3.3 70B - High-quality chat and general tasks (FREE)"
     },
     {
       "model_name": "meta-llama/llama-3-70b",
-      "aliases": ["llama", "llama3", "llama3-70b", "llama-70b", "llama3-openrouter"],
+      "aliases": ["llama-3-old", "llama3-old", "llama3-70b-old", "llama-70b-old"],
       "context_window": 8192,
       "supports_extended_thinking": false,
       "supports_json_mode": false,
       "supports_function_calling": false,
       "supports_images": false,
       "max_image_size_mb": 0.0,
-      "description": "Meta's Llama 3 70B model (text-only)"
+      "description": "Meta's Llama 3 70B model (text-only) - DEPRECATED, use llama-3.3-free instead"
     },
     {
       "model_name": "deepseek/deepseek-r1-0528",
-      "aliases": ["deepseek-r1", "deepseek", "r1", "deepseek-thinking"],
+      "aliases": ["deepseek-r1-old", "deepseek-old", "r1-old", "deepseek-thinking-old"],
       "context_window": 65536,
       "supports_extended_thinking": true,
       "supports_json_mode": true,
       "supports_function_calling": false,
       "supports_images": false,
       "max_image_size_mb": 0.0,
-      "description": "DeepSeek R1 with thinking mode - advanced reasoning capabilities (text-only)"
+      "description": "DeepSeek R1 0528 - advanced reasoning capabilities (DEPRECATED, use deepseek-r1:free instead)"
     },
     {
       "model_name": "perplexity/llama-3-sonar-large-32k-online",
@@ -146,84 +135,6 @@
       "supports_images": false,
       "max_image_size_mb": 0.0,
       "description": "Perplexity's online model with web search (text-only)"
-    },
-    {
-      "model_name": "openai/o3",
-      "aliases": ["o3"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o3 model - well-rounded and powerful across domains with vision"
-    },
-    {
-      "model_name": "openai/o3-mini",
-      "aliases": ["o3-mini", "o3mini"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o3-mini model - balanced performance and speed with vision"
-    },
-    {
-      "model_name": "openai/o3-mini-high",
-      "aliases": ["o3-mini-high", "o3mini-high"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o3-mini with high reasoning effort - optimized for complex problems with vision"
-    },
-    {
-      "model_name": "openai/o3-pro",
-      "aliases": ["o3-pro", "o3pro"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o3-pro model - professional-grade reasoning and analysis with vision"
-    },
-    {
-      "model_name": "openai/o4-mini",
-      "aliases": ["o4-mini", "o4mini"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o4-mini model - optimized for shorter contexts with rapid reasoning and vision"
-    },
-    {
-      "model_name": "openai/o4-mini-high",
-      "aliases": ["o4-mini-high", "o4mini-high", "o4minihigh", "o4minihi"],
-      "context_window": 200000,
-      "supports_extended_thinking": false,
-      "supports_json_mode": true,
-      "supports_function_calling": true,
-      "supports_images": true,
-      "max_image_size_mb": 20.0,
-      "supports_temperature": false,
-      "temperature_constraint": "fixed",
-      "description": "OpenAI's o4-mini with high reasoning effort - enhanced for complex tasks with vision"
     },
     {
       "model_name": "llama3.2",

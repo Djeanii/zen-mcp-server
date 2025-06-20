@@ -3,13 +3,19 @@
 https://github.com/user-attachments/assets/8097e18e-b926-4d8b-ba14-a979e4c58bda
 
 <div align="center">  
-  <b>🤖 Claude + [Gemini / OpenAI / Grok / OpenRouter / Ollama / Any Model] = Your Ultimate AI Development Team</b>
+  <b>🆓 Claude + 100% FREE AI Models = Your Ultimate Development Team (ZERO API COSTS!)</b>
 </div>
 
 <br/>
 
-The ultimate development partners for Claude - a Model Context Protocol server that gives Claude access to multiple AI models for enhanced code analysis, 
-problem-solving, and collaborative development.
+**🚀 NEW: COMPLETELY FREE OPERATION!** The ultimate development partners for Claude - a Model Context Protocol server that gives Claude access to **5 powerful FREE AI models** for enhanced code analysis, problem-solving, and collaborative development with **ZERO ongoing costs**.
+
+**🔥 Free Models Available:**
+- **DeepSeek R1** (671B params, thinking mode) - Advanced reasoning
+- **Gemini Flash** (1M context) - Ultra-fast with huge context  
+- **Qwen Coder** (32B params) - Code generation specialist
+- **Mistral Devstral** - Development tasks focus
+- **Llama 3.3** (70B params) - High-quality general chat
 
 **Features true AI orchestration with conversations that continue across tasks** - Give Claude a complex
 task and let it orchestrate between models automatically. Claude stays in control, performs the actual work, 
@@ -20,16 +26,15 @@ improving code structure, [`debug`](#7-debug---expert-debugging-assistant) for s
 validating changes, Claude can switch between different tools _and_ models mid-conversation, 
 with context carrying forward seamlessly.
 
-**Example Workflow - Claude Code:**
+**Example Workflow - Claude Code (100% FREE):**
 1. Performs its own reasoning
-2. Uses Gemini Pro to deeply [`analyze`](#8-analyze---smart-file-analysis) the code in question for a second opinion
-3. Switches to O3 to continue [`chatting`](#1-chat---general-development-chat--collaborative-thinking) about its findings 
-4. Uses Flash to evaluate formatting suggestions from O3
-5. Performs the actual work after taking in feedback from all three
-6. Returns to Pro for a [`precommit`](#6-precommit---pre-commit-validation) review
+2. Uses **DeepSeek R1** (free) to deeply [`analyze`](#8-analyze---smart-file-analysis) the code with thinking mode 
+3. Switches to **Qwen Coder** (free) to continue [`chatting`](#1-chat---general-development-chat--collaborative-thinking) about code-specific insights
+4. Uses **Gemini Flash** (free) to quickly evaluate suggestions with 1M context
+5. Performs the actual work after taking in feedback from all three **free models**
+6. Returns to **DeepSeek R1** (free) for a [`precommit`](#6-precommit---pre-commit-validation) review with thinking mode
 
-All within a single conversation thread! Gemini Pro in step 6 _knows_ what was recommended by O3 in step 3! Taking that context
-and review into consideration to aid with its pre-commit review.
+All within a single conversation thread! **DeepSeek R1** in step 6 _knows_ what was recommended by **Qwen Coder** in step 3! Taking that context and review into consideration to aid with its pre-commit review - **all completely free!**
 
 **Think of it as Claude Code _for_ Claude Code.** This MCP isn't magic. It's just **super-glue**.
 
@@ -43,8 +48,9 @@ Because these AI models [clearly aren't when they get chatty →](docs/ai_banter
 
 ## Quick Navigation
 
-- **Getting Started**
+- **Getting Started** 
   - [Quickstart](#quickstart-5-minutes) - Get running in 5 minutes
+  - [🆓 FREE Models Guide](docs/FREE_MODELS_GUIDE.md) - **Zero cost setup with powerful models**
   - [Available Tools](#available-tools) - Overview of all tools
   - [AI-to-AI Conversations](#ai-to-ai-conversation-threading) - Multi-turn conversations
 

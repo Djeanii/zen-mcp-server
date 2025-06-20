@@ -2,6 +2,29 @@
 
 This file contains essential commands and workflows for developing and maintaining the Zen MCP Server when working with Claude. Use these instructions to efficiently run quality checks, manage the server, check logs, and run tests.
 
+## 🆓 FREE MODELS CONFIGURATION (Zero API Costs!)
+
+**Current Status**: This Zen MCP server is configured for **100% FREE operation** using only OpenRouter's free models.
+
+### Available Free Models:
+- **🧠 DeepSeek R1** (`reasoning`, `r1`, `deepseek`, `thinking`) - 671B params, 163K context, thinking mode
+- **⚡ Gemini Flash** (`flash`, `fast`, `gemini-flash`) - 1M context, ultra-fast responses
+- **💻 Qwen Coder** (`coder`, `code`, `qwen-coder`) - 32B params, specialized for code generation
+- **🔧 Mistral Devstral** (`mistral`, `devstral`) - Code generation and development tasks
+- **💬 Llama 3.3** (`pro`, `chat`, `llama`, `general`) - 70B params, high-quality chat
+
+### Smart Model Selection by Tool:
+- **thinkdeep**: Uses `reasoning` (DeepSeek R1) for complex analysis, `flash` for quick tasks
+- **codereview**: Uses `coder` (Qwen) for code focus, `reasoning` for complex logic
+- **debug**: Uses `reasoning` for complex debugging, `flash` for simple issues
+- **chat**: Uses `pro` (Llama 3.3) for general discussion, `flash` for quick responses
+- **All tools**: Completely free operation with powerful capabilities
+
+### Configuration Files:
+- **Model Config**: `/conf/custom_models.json` - Contains only free models
+- **Paid Models**: Completely removed (Claude, O3/O4, Mistral Large)
+- **Aliases**: Smart aliases point to free alternatives (e.g., `opus` → `reasoning`)
+
 ## Quick Reference Commands
 
 ### Code Quality Checks
